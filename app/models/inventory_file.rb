@@ -18,12 +18,8 @@ class InventoryFile < ActiveRecord::Base
     file = File.open(self.inventory.path)
     reader = file.read
     reader.split.each do |row|
-      begin
-        item = Item.find_by_sql(['SELECT * FROM items WHERE item_identifier = ?', row.to_s.strip])
-        self.items << item if item
-      rescue ActiveRecord::RecordInvalid
-        next
-      end
+      item = Item.where(:item_identifier => row.to_s.strip).first
+      self.items << item if item
     end
     file.close
     true
