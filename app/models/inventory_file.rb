@@ -18,8 +18,12 @@ class InventoryFile < ActiveRecord::Base
     file = File.open(self.inventory.path)
     reader = file.read
     reader.split.each do |row|
-      item = Item.where(:item_identifier => row.to_s.strip).first
-      self.items << item if item
+      begin
+        item = Item.where(:item_identifier => row.to_s.strip).first
+        self.items << item if item
+      rescue ActiveRecord::RecordInvalid
+        next
+      end
     end
     file.close
     true
