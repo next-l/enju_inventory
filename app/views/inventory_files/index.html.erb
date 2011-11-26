@@ -24,7 +24,7 @@
     <td><%= link_to t('page.edit'), edit_inventory_file_path(inventory_file) -%> </td>
     <td><%= link_to t('page.destroy'), inventory_file, :confirm => t('page.are_you_sure'), :method => :delete -%> </td>
   </tr>
-<%- end -%> 
+<%- end -%>
 </table>
 
 <%= will_paginate(@inventory_files) -%>
