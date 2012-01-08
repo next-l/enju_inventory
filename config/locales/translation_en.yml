@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    models:
+      inventory: Inventory
+      inventory_file: Inventory file
+
+    attributes:
+      inventory:
+        note: Note
+      inventory_file:
+        inventory_file_name: Filename
+        inventory_content_type: Content type
+        inventory_file_size: Size
+        file_hash: File hash
+        note: Note
+
+  inventory_file:
+    not_in_catalog: "Not in catalog"
+    not_on_shelf: "Not on shelf"
+

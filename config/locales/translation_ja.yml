@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    models:
+      inventory: 蔵書点検
+      inventory_file: 蔵書点検ファイル
+
+    attributes:
+      inventory:
+        note: 注記
+      inventory_file:
+        inventory_file_name: ファイル名
+        inventory_content_type: Content-Type
+        inventory_file_size: ファイルサイズ
+        file_hash: ファイルのハッシュ
+        note: 注記
+
+  inventory_file:
+    not_in_catalog: "目録に存在しない資料"
+    not_on_shelf: "書架に存在しない資料"
+
