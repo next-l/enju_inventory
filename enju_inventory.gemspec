@@ -22,8 +22,8 @@ Gem::Specification.new do |s|
   s.add_dependency "paperclip"
   s.add_dependency "inherited_resources"
   s.add_dependency "will_paginate"
-  s.add_dependency "sunspot_rails", "~> 1.3"
-  s.add_dependency "sunspot_solr", "~> 1.3"
+  s.add_dependency "sunspot_rails"
+  s.add_dependency "sunspot_solr"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec-rails"
