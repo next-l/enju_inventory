@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 3.2"
   s.add_dependency "devise"
   s.add_dependency "cancan"
-  s.add_dependency "paperclip"
+  s.add_dependency "paperclip", "~> 3.0"
   s.add_dependency "inherited_resources"
   s.add_dependency "will_paginate"
   s.add_dependency "sunspot_rails"

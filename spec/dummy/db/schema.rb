@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111201163718) do
+ActiveRecord::Schema.define(:version => 20120413100431) do
 
   create_table "inventories", :force => true do |t|
     t.integer  "item_id"
     t.integer  "inventory_file_id"
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   add_index "inventories", ["inventory_file_id"], :name => "index_inventories_on_inventory_file_id"
@@ -31,12 +31,13 @@ ActiveRecord::Schema.define(:version => 20111201163718) do
     t.string   "file_hash"
     t.integer  "user_id"
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.string   "inventory_file_name"
     t.string   "inventory_content_type"
     t.integer  "inventory_file_size"
     t.datetime "inventory_updated_at"
+    t.string   "fingerprint"
   end
 
   add_index "inventory_files", ["file_hash"], :name => "index_inventory_files_on_file_hash"
@@ -47,8 +48,8 @@ ActiveRecord::Schema.define(:version => 20111201163718) do
     t.string   "item_identifier"
     t.integer  "circulation_status_id",       :default => 5,     :null => false
     t.integer  "checkout_type_id",            :default => 1,     :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.datetime "deleted_at"
     t.integer  "shelf_id",                    :default => 1,     :null => false
     t.integer  "basket_id"
@@ -76,15 +77,15 @@ ActiveRecord::Schema.define(:version => 20111201163718) do
     t.text     "display_name"
     t.text     "note"
     t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "user_has_roles", :force => true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -93,8 +94,8 @@ ActiveRecord::Schema.define(:version => 20111201163718) do
     t.string   "username"
     t.text     "note"
     t.string   "locale"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
     t.string   "reset_password_token"
