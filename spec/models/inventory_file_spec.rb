@@ -19,7 +19,6 @@ end
 #  filename               :string(255)
 #  content_type           :string(255)
 #  size                   :integer
-#  file_hash              :string(255)
 #  user_id                :integer
 #  note                   :text
 #  created_at             :datetime        not null

@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(:version => 20120413100431) do
     t.string   "filename"
     t.string   "content_type"
     t.integer  "size"
-    t.string   "file_hash"
     t.integer  "user_id"
     t.text     "note"
     t.datetime "created_at",             :null => false
@@ -40,7 +39,6 @@ ActiveRecord::Schema.define(:version => 20120413100431) do
     t.string   "inventory_fingerprint"
   end
 
-  add_index "inventory_files", ["file_hash"], :name => "index_inventory_files_on_file_hash"
   add_index "inventory_files", ["user_id"], :name => "index_inventory_files_on_user_id"
 
   create_table "items", :force => true do |t|
