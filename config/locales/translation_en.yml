@@ -11,7 +11,7 @@ ja:
         inventory_file_name: Filename
         inventory_content_type: Content type
         inventory_file_size: Size
-        file_hash: File hash
+        inventory_fingerprint: Fingerprint
         note: Note
 
   inventory_file:

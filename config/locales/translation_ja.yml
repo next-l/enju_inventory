@@ -11,7 +11,7 @@ ja:
         inventory_file_name: ファイル名
         inventory_content_type: Content-Type
         inventory_file_size: ファイルサイズ
-        file_hash: ファイルのハッシュ
+        inventory_fingerprint: ファイルのハッシュ
         note: 注記
 
   inventory_file:
