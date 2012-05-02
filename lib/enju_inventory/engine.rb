@@ -6,6 +6,6 @@ require 'will_paginate'
 require 'sunspot_rails'
 
 module EnjuInventory
-  class Engine < Rails::Engine
+  class Engine < ::Rails::Engine
   end
 end
