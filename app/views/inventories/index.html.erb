@@ -16,7 +16,7 @@
     <td>
       <%= link_to t('page.show'), inventory -%>
       <%= link_to t('page.edit'), edit_inventory_path(inventory) -%>
-      <%= link_to t('page.destroy'), inventory, :confirm => t('page.are_you_sure'), :method => :delete -%>
+      <%= link_to t('page.destroy'), inventory, :data => {:confirm => t('page.are_you_sure')}, :method => :delete -%>
     </td>
   </tr>
 <%- end -%>
