@@ -3,10 +3,17 @@ class InventoryFile < ActiveRecord::Base
   has_many :inventories, :dependent => :destroy
   has_many :items, :through => :inventories
   belongs_to :user
-  has_attached_file :inventory, :path => ":rails_root/private:url"
+  validates_presence_of :user
+
+  if configatron.uploaded_file.storage == :s3
+    has_attached_file :inventory, :storage => :s3, :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
+      :s3_permissions => :private
+  else
+    has_attached_file :inventory,
+      :path => ":rails_root/private/system/:class/:attachment/:id_partition/:style/:filename"
+  end
   validates_attachment_content_type :inventory, :content_type => ['text/csv', 'text/plain', 'text/tab-separated-values']
   validates_attachment_presence :inventory
-  validates_presence_of :user
 
   def self.per_page
     10
