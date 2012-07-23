@@ -15,9 +15,7 @@ class InventoryFile < ActiveRecord::Base
   validates_attachment_content_type :inventory, :content_type => ['text/csv', 'text/plain', 'text/tab-separated-values']
   validates_attachment_presence :inventory
 
-  def self.per_page
-    10
-  end
+  paginates_per 10
 
   def import
     self.reload
