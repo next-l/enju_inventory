@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 3.2"
   s.add_dependency "paperclip", "~> 3.0"
   s.add_dependency "inherited_resources"
-  s.add_dependency "enju_core"
+  s.add_dependency "enju_biblio", "~> 0.1.0.pre"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec-rails"
