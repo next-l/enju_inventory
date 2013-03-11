@@ -18,4 +18,5 @@ module EnjuInventory
   end
 end
 
+ActiveRecord::Base.send :include, EnjuInventory::InventoryItem
 ActionController::Base.send(:include, EnjuInventory)
