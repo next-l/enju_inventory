@@ -44,8 +44,6 @@ ActiveRecord::Schema.define(:version => 20120413100431) do
   create_table "items", :force => true do |t|
     t.string   "call_number"
     t.string   "item_identifier"
-    t.integer  "circulation_status_id",       :default => 5,     :null => false
-    t.integer  "checkout_type_id",            :default => 1,     :null => false
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
     t.datetime "deleted_at"
@@ -64,8 +62,6 @@ ActiveRecord::Schema.define(:version => 20120413100431) do
     t.integer  "required_score",              :default => 0,     :null => false
   end
 
-  add_index "items", ["checkout_type_id"], :name => "index_items_on_checkout_type_id"
-  add_index "items", ["circulation_status_id"], :name => "index_items_on_circulation_status_id"
   add_index "items", ["item_identifier"], :name => "index_items_on_item_identifier"
   add_index "items", ["required_role_id"], :name => "index_items_on_required_role_id"
   add_index "items", ["shelf_id"], :name => "index_items_on_shelf_id"
