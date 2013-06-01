@@ -43,4 +43,4 @@ module Dummy
   end
 end
 
-require 'mobylette'
+require 'enju_leaf'
