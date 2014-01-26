@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name        = "enju_inventory"
   s.version     = EnjuInventory::VERSION
   s.authors     = ["Kosuke Tanabe"]
-  s.email       = ["tanabe@mwr.mediacom.keio.ac.jp"]
+  s.email       = ["kosuke@e23.jp"]
   s.homepage    = "https://github.com/next-l/enju_inventory"
   s.summary     = "enju_inventory plugin"
   s.description = "Inventory management for Next-L Enju"
