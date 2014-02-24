@@ -1,5 +1,4 @@
 class InventoryFile < ActiveRecord::Base
-  #attr_accessible :inventory, :note
   has_many :inventories, :dependent => :destroy
   has_many :items, :through => :inventories
   belongs_to :user
