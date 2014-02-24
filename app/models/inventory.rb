@@ -1,5 +1,5 @@
 class Inventory < ActiveRecord::Base
-  attr_accessible :item_id, :inventory_id, :note
+  #attr_accessible :item_id, :inventory_id, :note
   belongs_to :item
   belongs_to :inventory_file
 
