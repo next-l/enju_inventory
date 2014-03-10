@@ -1,5 +1,7 @@
 class InventoryFilesController < ApplicationController
-  load_and_authorize_resource
+  before_action :set_inventory_file, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized
+  after_action :verify_policy_scoped, :only => :index
 
   # GET /inventory_files
   # GET /inventory_files.json
@@ -82,6 +84,11 @@ class InventoryFilesController < ApplicationController
   end
 
   private
+  def set_inventory_file
+    @inventory_file = InventoryFile.find(params[:id])
+    authorize @inventory_file
+  end
+
   def inventory_file_params
     params.require(:inventory_file).permit(
       :inventory, :note
