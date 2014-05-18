@@ -29,7 +29,7 @@ describe InventoriesController do
 
       it "assigns all empty as @inventories" do
         get :index
-        assigns(:inventories).should be_empty
+        assigns(:inventories).should be_nil
         response.should be_forbidden
       end
     end
@@ -37,7 +37,7 @@ describe InventoriesController do
     describe "When not logged in" do
       it "assigns all inventories as @inventories" do
         get :index
-        assigns(:inventories).should be_empty
+        assigns(:inventories).should be_nil
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -97,7 +97,7 @@ describe InventoriesController do
       it "should not assign the requested inventory as @inventory" do
         get :new
         assigns(:inventory).should_not be_valid
-        response.should be_success
+        response.should be_forbidden
       end
     end
 

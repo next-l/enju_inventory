@@ -28,7 +28,7 @@ describe InventoryFilesController do
 
       it "assigns empty as @inventory_files" do
         get :index
-        assigns(:inventory_files).should be_empty
+        assigns(:inventory_files).should be_nil
         response.should be_forbidden
       end
     end
@@ -36,7 +36,7 @@ describe InventoryFilesController do
     describe "When not logged in" do
       it "assigns empty as @inventory_files" do
         get :index
-        assigns(:inventory_files).should be_empty
+        assigns(:inventory_files).should be_nil
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -200,7 +200,7 @@ describe InventoryFilesController do
       login_admin
 
       it "should update inventory_file" do
-        put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { }
+        put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { :note => 'test' }
         response.should redirect_to inventory_file_url(assigns(:inventory_file))
       end
     end
@@ -209,7 +209,7 @@ describe InventoryFilesController do
       login_librarian
 
       it "should update inventory_file" do
-        put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { }
+        put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { :note => 'test' }
         response.should redirect_to inventory_file_url(assigns(:inventory_file))
       end
     end

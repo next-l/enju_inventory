@@ -1,9 +1,11 @@
 class InventoryFilesController < ApplicationController
-  load_and_authorize_resource
+  before_action :set_inventory_file, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized
 
   # GET /inventory_files
   # GET /inventory_files.json
   def index
+    authorize InventoryFile
     @inventory_files = InventoryFile.page(params[:page])
 
     respond_to do |format|
@@ -25,6 +27,7 @@ class InventoryFilesController < ApplicationController
   # GET /inventory_files/new.json
   def new
     @inventory_file = InventoryFile.new
+    authorize @inventory_file
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,8 +42,9 @@ class InventoryFilesController < ApplicationController
   # POST /inventory_files
   # POST /inventory_files.json
   def create
-    @inventory_file = InventoryFile.new(params[:inventory_file])
+    @inventory_file = InventoryFile.new(inventory_file_params)
     @inventory_file.user = current_user
+    authorize @inventory_file
 
     respond_to do |format|
       if @inventory_file.save
@@ -59,7 +63,7 @@ class InventoryFilesController < ApplicationController
   # PUT /inventory_files/1.json
   def update
     respond_to do |format|
-      if @inventory_file.update_attributes(params[:inventory_file])
+      if @inventory_file.update_attributes(inventory_file_params)
         flash[:notice] = t('controller.successfully_updated', :model => t('activerecord.models.inventory_file'))
         format.html { redirect_to(@inventory_file) }
         format.json { head :no_content }
@@ -79,5 +83,17 @@ class InventoryFilesController < ApplicationController
       format.html { redirect_to inventory_files_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def set_inventory_file
+    @inventory_file = InventoryFile.find(params[:id])
+    authorize @inventory_file
+  end
+
+  def inventory_file_params
+    params.require(:inventory_file).permit(
+      :inventory, :note
+    )
   end
 end
