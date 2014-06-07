@@ -6,7 +6,7 @@ describe InventoryFilesController do
 
   describe "GET index" do
     describe "When logged in as Administrator" do
-      login_admin
+      login_fixture_admin
 
       it "assigns all inventory_files as @inventory_files" do
         get :index
@@ -15,7 +15,7 @@ describe InventoryFilesController do
     end
 
     describe "When logged in as Librarian" do
-      login_librarian
+      login_fixture_librarian
 
       it "assigns all inventory_files as @inventory_files" do
         get :index
@@ -24,7 +24,7 @@ describe InventoryFilesController do
     end
 
     describe "When logged in as User" do
-      login_user
+      login_fixture_user
 
       it "assigns empty as @inventory_files" do
         get :index
@@ -44,7 +44,7 @@ describe InventoryFilesController do
 
   describe "GET show" do
     describe "When logged in as Administrator" do
-      login_admin
+      login_fixture_admin
 
       it "assigns the requested inventory_file as @inventory_file" do
         get :show, :id => 1
@@ -53,7 +53,7 @@ describe InventoryFilesController do
     end
 
     describe "When logged in as Librarian" do
-      login_librarian
+      login_fixture_librarian
 
       it "assigns the requested inventory_file as @inventory_file" do
         get :show, :id => 1
@@ -62,7 +62,7 @@ describe InventoryFilesController do
     end
 
     describe "When logged in as User" do
-      login_user
+      login_fixture_user
 
       it "assigns the requested inventory_file as @inventory_file" do
         get :show, :id => 1
@@ -81,7 +81,7 @@ describe InventoryFilesController do
 
   describe "GET new" do
     describe "When logged in as Administrator" do
-      login_admin
+      login_fixture_admin
 
       it "assigns the requested inventory_file as @inventory_file" do
         get :new
@@ -91,7 +91,7 @@ describe InventoryFilesController do
     end
 
     describe "When logged in as Librarian" do
-      login_librarian
+      login_fixture_librarian
 
       it "should not assign the requested inventory_file as @inventory_file" do
         get :new
@@ -101,7 +101,7 @@ describe InventoryFilesController do
     end
 
     describe "When logged in as User" do
-      login_user
+      login_fixture_user
 
       it "should not assign the requested inventory_file as @inventory_file" do
         get :new
@@ -121,10 +121,7 @@ describe InventoryFilesController do
 
   describe "POST create" do
     describe "When logged in as Librarian" do
-      before(:each) do
-        @user = FactoryGirl.create(:librarian)
-        sign_in @user
-      end
+      login_fixture_librarian
 
       it "should create inventory_file" do
         post :create, :inventory_file => {:inventory => fixture_file_upload("/../../examples/inventory_file_sample.tsv", 'text/csv') }
@@ -136,10 +133,7 @@ describe InventoryFilesController do
     end
 
     describe "When logged in as User" do
-      before(:each) do
-        @user = FactoryGirl.create(:user)
-        sign_in @user
-      end
+      login_fixture_user
 
       it "should be forbidden" do
         post :create, :inventory_file => {:inventory => fixture_file_upload("/../../examples/inventory_file_sample.tsv", 'text/csv') }
@@ -157,7 +151,7 @@ describe InventoryFilesController do
 
   describe "GET edit" do
     describe "When logged in as Administrator" do
-      login_admin
+      login_fixture_admin
 
       it "assigns the requested inventory_file as @inventory_file" do
         inventory_file = inventory_files(:inventory_file_00001)
@@ -167,7 +161,7 @@ describe InventoryFilesController do
     end
 
     describe "When logged in as Librarian" do
-      login_librarian
+      login_fixture_librarian
 
       it "assigns the requested inventory_file as @inventory_file" do
         inventory_file = inventory_files(:inventory_file_00001)
@@ -177,7 +171,7 @@ describe InventoryFilesController do
     end
 
     describe "When logged in as User" do
-      login_user
+      login_fixture_user
 
       it "assigns the requested inventory_file as @inventory_file" do
         inventory_file = inventory_files(:inventory_file_00001)
@@ -197,7 +191,7 @@ describe InventoryFilesController do
 
   describe "PUT update" do
     describe "When logged in as Administrator" do
-      login_admin
+      login_fixture_admin
 
       it "should update inventory_file" do
         put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { }
@@ -206,7 +200,7 @@ describe InventoryFilesController do
     end
 
     describe "When logged in as Librarian" do
-      login_librarian
+      login_fixture_librarian
 
       it "should update inventory_file" do
         put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { }
@@ -215,7 +209,7 @@ describe InventoryFilesController do
     end
 
     describe "When logged in as User" do
-      login_user
+      login_fixture_user
 
       it "should not update inventory_file" do
         put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { }
@@ -237,7 +231,7 @@ describe InventoryFilesController do
     end
 
     describe "When logged in as Administrator" do
-      login_admin
+      login_fixture_admin
 
       it "destroys the requested inventory_file" do
         delete :destroy, :id => @inventory_file.id
@@ -250,7 +244,7 @@ describe InventoryFilesController do
     end
 
     describe "When logged in as Librarian" do
-      login_librarian
+      login_fixture_librarian
 
       it "destroys the requested inventory_file" do
         delete :destroy, :id => @inventory_file.id
@@ -263,7 +257,7 @@ describe InventoryFilesController do
     end
 
     describe "When logged in as User" do
-      login_user
+      login_fixture_user
 
       it "destroys the requested inventory_file" do
         delete :destroy, :id => @inventory_file.id

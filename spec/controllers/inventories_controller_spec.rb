@@ -5,7 +5,7 @@ describe InventoriesController do
 
   describe "GET index" do
     describe "When logged in as Administrator" do
-      login_admin
+      login_fixture_admin
 
       it "assigns all inventories as @inventories" do
         get :index
@@ -15,7 +15,7 @@ describe InventoriesController do
     end
 
     describe "When logged in as Librarian" do
-      login_librarian
+      login_fixture_librarian
 
       it "assigns all inventories as @inventories" do
         get :index
@@ -25,7 +25,7 @@ describe InventoriesController do
     end
 
     describe "When logged in as User" do
-      login_user
+      login_fixture_user
 
       it "assigns all empty as @inventories" do
         get :index
@@ -45,7 +45,7 @@ describe InventoriesController do
 
   describe "GET show" do
     describe "When logged in as Administrator" do
-      login_admin
+      login_fixture_admin
 
       it "assigns the requested inventory as @inventory" do
         get :show, :id => 1
@@ -54,7 +54,7 @@ describe InventoriesController do
     end
 
     describe "When logged in as Librarian" do
-      login_librarian
+      login_fixture_librarian
 
       it "assigns the requested inventory as @inventory" do
         get :show, :id => 1
@@ -63,7 +63,7 @@ describe InventoriesController do
     end
 
     describe "When logged in as User" do
-      login_user
+      login_fixture_user
 
       it "assigns the requested inventory as @inventory" do
         get :show, :id => 1
@@ -82,7 +82,7 @@ describe InventoriesController do
 
   describe "GET new" do
     describe "When logged in as Administrator" do
-      login_admin
+      login_fixture_admin
 
       it "assigns the requested inventory as @inventory" do
         get :new
@@ -92,7 +92,7 @@ describe InventoriesController do
     end
 
     describe "When logged in as Librarian" do
-      login_librarian
+      login_fixture_librarian
 
       it "should not assign the requested inventory as @inventory" do
         get :new
@@ -102,7 +102,7 @@ describe InventoriesController do
     end
 
     describe "When logged in as User" do
-      login_user
+      login_fixture_user
 
       it "should not assign the requested inventory as @inventory" do
         get :new
@@ -122,7 +122,7 @@ describe InventoriesController do
 
   describe "GET edit" do
     describe "When logged in as Administrator" do
-      login_admin
+      login_fixture_admin
 
       it "assigns the requested inventory as @inventory" do
         inventory = inventories(:inventory_00001)
@@ -132,7 +132,7 @@ describe InventoriesController do
     end
 
     describe "When logged in as Librarian" do
-      login_librarian
+      login_fixture_librarian
 
       it "assigns the requested inventory as @inventory" do
         inventory = inventories(:inventory_00001)
@@ -142,7 +142,7 @@ describe InventoriesController do
     end
 
     describe "When logged in as User" do
-      login_user
+      login_fixture_user
 
       it "assigns the requested inventory as @inventory" do
         inventory = inventories(:inventory_00001)

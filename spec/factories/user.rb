@@ -5,7 +5,9 @@ FactoryGirl.define do
     f.role {Role.find_by_name('Administrator')}
     f.password 'adminpassword'
     f.password_confirmation 'adminpassword'
+    f.user_group {UserGroup.first}
     f.required_role {Role.find_by_name('User')}
+    f.sequence(:user_number){|n| "user_number_#{n}"}
   end
 
   factory :librarian, :class => User do |f|
@@ -14,7 +16,9 @@ FactoryGirl.define do
     f.role {Role.find_by_name('Librarian')}
     f.password 'librarianpassword'
     f.password_confirmation 'librarianpassword'
+    f.user_group {UserGroup.first}
     f.required_role {Role.find_by_name('User')}
+    f.sequence(:user_number){|n| "user_number_#{n}"}
   end
 
   factory :user, :class => User do |f|
@@ -23,7 +27,9 @@ FactoryGirl.define do
     f.role {Role.find_by_name('User')}
     f.password 'userpassword'
     f.password_confirmation 'userpassword'
+    f.user_group {UserGroup.first}
     f.required_role {Role.find_by_name('User')}
+    f.sequence(:user_number){|n| "user_number_#{n}"}
   end
 
   factory :invalid_user, :class => User do |f|
