@@ -66,6 +66,33 @@ ActiveRecord::Schema.define(:version => 20120413100431) do
   add_index "items", ["required_role_id"], :name => "index_items_on_required_role_id"
   add_index "items", ["shelf_id"], :name => "index_items_on_shelf_id"
 
+  create_table "libraries", :force => true do |t|
+    t.string   "name",                                   :null => false
+    t.text     "display_name"
+    t.string   "short_display_name",                     :null => false
+    t.string   "zip_code"
+    t.text     "street"
+    t.text     "locality"
+    t.text     "region"
+    t.string   "telephone_number_1"
+    t.string   "telephone_number_2"
+    t.string   "fax_number"
+    t.text     "note"
+    t.integer  "call_number_rows",      :default => 1,   :null => false
+    t.string   "call_number_delimiter", :default => "|", :null => false
+    t.integer  "library_group_id",      :default => 1,   :null => false
+    t.integer  "users_count",           :default => 0,   :null => false
+    t.integer  "position"
+    t.integer  "country_id"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.datetime "deleted_at"
+    t.string   "isil"
+  end
+
+  add_index "libraries", ["library_group_id"], :name => "index_libraries_on_library_group_id"
+  add_index "libraries", ["name"], :name => "index_libraries_on_name", :unique => true
+
   create_table "library_groups", :force => true do |t|
     t.string   "name",                                                 :null => false
     t.text     "display_name"
