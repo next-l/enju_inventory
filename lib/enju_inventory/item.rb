@@ -9,8 +9,10 @@ module EnjuInventory
         include InstanceMethods
         has_many :inventories, :dependent => :destroy
         has_many :inventory_files, :through => :inventories
-        searchable do
-          integer :inventory_file_ids, :multiple => true
+        settings do
+          mappings dynamic: 'false', _routing: {required: false} do
+            indexes :inventory_file_ids, type: 'integer'
+          end
         end
 
         def inventory_items(inventory_file, mode = 'not_on_shelf')
@@ -25,6 +27,14 @@ module EnjuInventory
         rescue
           nil
         end
+      end
+    end
+
+    module ClassMethods
+      def as_indexed_json(options={})
+        super.merge(
+          inventory_file_ids: inventory_file_ids
+        )
       end
     end
   end
