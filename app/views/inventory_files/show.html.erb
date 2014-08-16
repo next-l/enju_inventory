@@ -1,5 +1,5 @@
 <div id="content_detail" class="ui-corner-all">
-<h1 class="title"><%= t('page.showing', :model => t('activerecord.models.inventory_file')) -%></h1>
+<h1 class="title"><%= t('page.showing', model: t('activerecord.models.inventory_file')) -%></h1>
 <div id="content_list">
 <p id="notice"><%= notice %></p>
 
@@ -25,7 +25,7 @@
 
 <p>
   <strong><%= t('activerecord.models.user') -%> :</strong>
-  <%= link_to @inventory_file.user.username, @inventory_file.user -%>
+  <%= link_to @inventory_file.user.username, @inventory_file.user.profile if @inventory_file.user.try(:profile) -%>
 </p>
 
 <p>

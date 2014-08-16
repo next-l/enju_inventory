@@ -1,6 +1,6 @@
 class InventoryFile < ActiveRecord::Base
-  has_many :inventories, :dependent => :destroy
-  has_many :items, :through => :inventories
+  has_many :inventories, dependent: :destroy
+  has_many :items, through: :inventories
   belongs_to :user
   validates_presence_of :user
 
@@ -9,7 +9,7 @@ class InventoryFile < ActiveRecord::Base
       :s3_permissions => :private
   else
     has_attached_file :inventory,
-      :path => ":rails_root/private/system/:class/:attachment/:id_partition/:style/:filename"
+      path: ":rails_root/private/system/:class/:attachment/:id_partition/:style/:filename"
   end
   validates_attachment_content_type :inventory, :content_type => ['text/csv', 'text/plain', 'text/tab-separated-values']
   validates_attachment_presence :inventory
@@ -21,9 +21,9 @@ class InventoryFile < ActiveRecord::Base
     file = File.open(self.inventory.path)
     reader = file.read
     reader.split.each do |row|
-      item = Item.where(:item_identifier => row.to_s.strip).first
+      item = Item.where(item_identifier: row.to_s.strip).first
       if item
-        unless self.items.where(:id => item.id).select('items.id').first
+        unless self.items.where(id: item.id).select('items.id').first
           self.items << item
         end
       end

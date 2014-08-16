@@ -10,7 +10,7 @@ class InventoriesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @inventories }
+      format.json { render json: @inventories }
     end
   end
 
@@ -37,11 +37,11 @@ class InventoriesController < ApplicationController
 
     respond_to do |format|
       if @inventory.save
-        format.html { redirect_to @inventory, :notice => t('controller.successfully_created', :model => t('activerecord.models.inventory')) }
-        format.json { render :json => @inventory, :status => :created, :location => @inventory }
+        format.html { redirect_to @inventory, notice: t('controller.successfully_created', model: t('activerecord.models.inventory')) }
+        format.json { render json: @inventory, status: :created, location: @inventory }
       else
-        format.html { render :action => "new" }
-        format.json { render :json => @inventory.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.json { render json: @inventory.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -51,11 +51,11 @@ class InventoriesController < ApplicationController
   def update
     respond_to do |format|
       if @inventory.update_attributes(inventory_params)
-        format.html { redirect_to @inventory, :notice => t('controller.successfully_updated', :model => t('activerecord.models.inventory')) }
+        format.html { redirect_to @inventory, notice: t('controller.successfully_updated', model: t('activerecord.models.inventory')) }
         format.json { head :no_content }
       else
-        format.html { render :action => "edit" }
-        format.json { render :json => @inventory.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.json { render json: @inventory.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -67,7 +67,7 @@ class InventoriesController < ApplicationController
 
     respond_to do |format|
       format.html {
-        flash[:notice] = t('controller.successfully_deleted', :model => t('activerecord.models.inventory'))
+        flash[:notice] = t('controller.successfully_deleted', model: t('activerecord.models.inventory'))
         redirect_to inventories_url
       }
       format.json { head :no_content }
