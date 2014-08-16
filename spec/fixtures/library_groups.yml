@@ -4,7 +4,6 @@ one:
   name: enju_library
   display_name: "<%= I18n.locale %>: Enju Library"
   short_name: enju
-  email: next-l@library.example.jp
   note: 
   my_networks: 0.0.0.0/0
   url: "http://localhost:3000/"
@@ -18,7 +17,6 @@ one:
 #  name                        :string(255)     not null
 #  display_name                :text
 #  short_name                  :string(255)     not null
-#  email                       :string(255)
 #  my_networks                 :text
 #  login_banner                :text
 #  note                        :text
