@@ -9,8 +9,8 @@ describe InventoriesController do
 
       it "assigns all inventories as @inventories" do
         get :index
-        assigns(:inventories).should eq(Inventory.page(1))
-        response.should be_success
+        expect(assigns(:inventories)).to eq(Inventory.page(1))
+        expect(response).to be_success
       end
     end
 
@@ -19,8 +19,8 @@ describe InventoriesController do
 
       it "assigns all inventories as @inventories" do
         get :index
-        assigns(:inventories).should eq(Inventory.page(1))
-        response.should be_success
+        expect(assigns(:inventories)).to eq(Inventory.page(1))
+        expect(response).to be_success
       end
     end
 
@@ -29,16 +29,16 @@ describe InventoriesController do
 
       it "assigns all empty as @inventories" do
         get :index
-        assigns(:inventories).should be_empty
-        response.should be_forbidden
+        expect(assigns(:inventories)).to be_empty
+        expect(response).to be_forbidden
       end
     end
 
     describe "When not logged in" do
       it "assigns all inventories as @inventories" do
         get :index
-        assigns(:inventories).should be_empty
-        response.should redirect_to(new_user_session_url)
+        expect(assigns(:inventories)).to be_empty
+        expect(response).to redirect_to(new_user_session_url)
       end
     end
   end
@@ -49,7 +49,8 @@ describe InventoriesController do
 
       it "assigns the requested inventory as @inventory" do
         get :show, :id => 1
-        assigns(:inventory).should eq(Inventory.find(1))
+        expect(assigns(:inventory)).to eq(Inventory.find(1))
+        expect(response).to be_success
       end
     end
 
@@ -58,7 +59,8 @@ describe InventoriesController do
 
       it "assigns the requested inventory as @inventory" do
         get :show, :id => 1
-        assigns(:inventory).should eq(Inventory.find(1))
+        expect(assigns(:inventory)).to eq(Inventory.find(1))
+        expect(response).to be_success
       end
     end
 
@@ -67,15 +69,16 @@ describe InventoriesController do
 
       it "assigns the requested inventory as @inventory" do
         get :show, :id => 1
-        assigns(:inventory).should eq(Inventory.find(1))
+        expect(assigns(:inventory)).to eq(Inventory.find(1))
+        expect(response).to be_forbidden
       end
     end
 
     describe "When not logged in" do
       it "assigns the requested inventory as @inventory" do
         get :show, :id => 1
-        assigns(:inventory).should eq(Inventory.find(1))
-        response.should redirect_to(new_user_session_url)
+        expect(assigns(:inventory)).to eq(Inventory.find(1))
+        expect(response).to redirect_to(new_user_session_url)
       end
     end
   end
@@ -86,8 +89,8 @@ describe InventoriesController do
 
       it "assigns the requested inventory as @inventory" do
         get :new
-        assigns(:inventory).should_not be_valid
-        response.should be_success
+        expect(assigns(:inventory)).not_to be_valid
+        expect(response).to be_success
       end
     end
 
@@ -96,8 +99,8 @@ describe InventoriesController do
 
       it "should not assign the requested inventory as @inventory" do
         get :new
-        assigns(:inventory).should_not be_valid
-        response.should be_success
+        expect(assigns(:inventory)).not_to be_valid
+        expect(response).to be_success
       end
     end
 
@@ -106,16 +109,16 @@ describe InventoriesController do
 
       it "should not assign the requested inventory as @inventory" do
         get :new
-        assigns(:inventory).should_not be_valid
-        response.should be_forbidden
+        expect(assigns(:inventory)).not_to be_valid
+        expect(response).to be_forbidden
       end
     end
 
     describe "When not logged in" do
       it "should not assign the requested inventory as @inventory" do
         get :new
-        assigns(:inventory).should_not be_valid
-        response.should redirect_to(new_user_session_url)
+        expect(assigns(:inventory)).not_to be_valid
+        expect(response).to redirect_to(new_user_session_url)
       end
     end
   end
@@ -127,7 +130,7 @@ describe InventoriesController do
       it "assigns the requested inventory as @inventory" do
         inventory = inventories(:inventory_00001)
         get :edit, :id => inventory.id
-        assigns(:inventory).should eq(inventory)
+        expect(assigns(:inventory)).to eq(inventory)
       end
     end
 
@@ -137,7 +140,7 @@ describe InventoriesController do
       it "assigns the requested inventory as @inventory" do
         inventory = inventories(:inventory_00001)
         get :edit, :id => inventory.id
-        assigns(:inventory).should eq(inventory)
+        expect(assigns(:inventory)).to eq(inventory)
       end
     end
 
@@ -147,7 +150,7 @@ describe InventoriesController do
       it "assigns the requested inventory as @inventory" do
         inventory = inventories(:inventory_00001)
         get :edit, :id => inventory.id
-        response.should be_forbidden
+        expect(response).to be_forbidden
       end
     end
 
@@ -155,7 +158,7 @@ describe InventoriesController do
       it "should not assign the requested inventory as @inventory" do
         inventory = inventories(:inventory_00001)
         get :edit, :id => inventory.id
-        response.should redirect_to(new_user_session_url)
+        expect(response).to redirect_to(new_user_session_url)
       end
     end
   end

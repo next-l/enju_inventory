@@ -11,7 +11,7 @@ describe InventoryFile do
   end
 
   it "should be imported" do
-    @file.import.should be_truthy
+    expect(@file.import).to be_truthy
   end
 end
 
