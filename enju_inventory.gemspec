@@ -20,6 +20,8 @@ Gem::Specification.new do |s|
   s.add_dependency "paperclip"
 
   s.add_development_dependency "sqlite3"
+  s.add_development_dependency "mysql2"
+  s.add_development_dependency "pg"
   s.add_development_dependency "rspec-rails", "~> 3.1"
   s.add_development_dependency "factory_girl_rails"
   s.add_development_dependency "enju_leaf", "~> 1.1.0.rc15"
