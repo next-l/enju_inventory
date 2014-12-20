@@ -19,4 +19,11 @@ class InventoriesController < ApplicationController
       format.json { render json: @inventory }
     end
   end
+
+  private
+  def inventory_params
+    params.require(:inventory).permit(
+      :item_id, :inventory_id, :note
+    )
+  end
 end

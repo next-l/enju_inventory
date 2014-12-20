@@ -39,7 +39,7 @@ class InventoryFilesController < ApplicationController
   # POST /inventory_files
   # POST /inventory_files.json
   def create
-    @inventory_file = InventoryFile.new(params[:inventory_file])
+    @inventory_file = InventoryFile.new(inventory_file_params)
     @inventory_file.user = current_user
 
     respond_to do |format|
@@ -59,7 +59,7 @@ class InventoryFilesController < ApplicationController
   # PUT /inventory_files/1.json
   def update
     respond_to do |format|
-      if @inventory_file.update_attributes(params[:inventory_file])
+      if @inventory_file.update_attributes(inventory_file_params)
         flash[:notice] = t('controller.successfully_updated', :model => t('activerecord.models.inventory_file'))
         format.html { redirect_to(@inventory_file) }
         format.json { head :no_content }
@@ -79,5 +79,10 @@ class InventoryFilesController < ApplicationController
       format.html { redirect_to inventory_files_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def inventory_file_params
+    params.require(:inventory_file).permit(:inventory_id, :note)
   end
 end
