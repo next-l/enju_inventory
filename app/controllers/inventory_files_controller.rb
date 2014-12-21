@@ -83,6 +83,6 @@ class InventoryFilesController < ApplicationController
 
   private
   def inventory_file_params
-    params.require(:inventory_file).permit(:inventory_id, :note)
+    params.require(:inventory_file).permit(:inventory, :note)
   end
 end

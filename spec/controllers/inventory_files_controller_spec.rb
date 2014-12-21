@@ -194,7 +194,7 @@ describe InventoryFilesController do
       login_fixture_admin
 
       it "should update inventory_file" do
-        put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { }
+        put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { note: "test" }
         expect(response).to redirect_to inventory_file_url(assigns(:inventory_file))
       end
     end
@@ -203,7 +203,7 @@ describe InventoryFilesController do
       login_fixture_librarian
 
       it "should update inventory_file" do
-        put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { }
+        put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { note: "test" }
         expect(response).to redirect_to inventory_file_url(assigns(:inventory_file))
       end
     end
@@ -212,14 +212,14 @@ describe InventoryFilesController do
       login_fixture_user
 
       it "should not update inventory_file" do
-        put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { }
+        put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { note: "test" }
         expect(response).to be_forbidden
       end
     end
 
     describe "When not logged in" do
       it "should not update inventory_file" do
-        put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { }
+        put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { note: "test" }
         expect(response).to redirect_to new_user_session_url
       end
     end
