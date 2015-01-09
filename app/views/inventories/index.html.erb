@@ -1,5 +1,5 @@
-<div id="content_detail" class="ui-corner-all">
-<h1 class="title"><%= t('page.listing', model: t('activerecord.models.inventory')) -%></h1>
+<div id="content_detail" class="ui-corner-all ui-widget-content">
+<h1 class="title"><%= t('page.listing', :model => t('activerecord.models.inventory')) -%></h1>
 <div id="content_list">
 
 <table class="table table-striped index">
@@ -16,7 +16,7 @@
     <td>
       <%= link_to t('page.show'), inventory -%>
       <%= link_to t('page.edit'), edit_inventory_path(inventory) -%>
-      <%= link_to t('page.destroy'), inventory, data: {confirm: t('page.are_you_sure')}, method: :delete -%>
+      <%= link_to t('page.destroy'), inventory, :data => {:confirm => t('page.are_you_sure')}, :method => :delete -%>
     </td>
   </tr>
 <%- end -%>
@@ -27,8 +27,8 @@
 </div>
 </div>
 
-<div id="submenu" class="ui-corner-all">
+<div id="submenu" class="ui-corner-all ui-widget-content">
   <ul>
-    <li><%= link_to t('page.new', model: t('activerecord.models.inventory')), new_inventory_path -%></li>
+    <li><%= link_to t('page.new', :model => t('activerecord.models.inventory')), new_inventory_path -%></li>
   </ul>
 </div>
