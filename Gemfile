@@ -13,7 +13,7 @@ gem "jquery-rails"
 gem "enju_leaf", github: "next-l/enju_leaf", branch: "master"
 gem "enju_biblio", github: "next-l/enju_biblio", branch: "master"
 gem "enju_library", github: "next-l/enju_library", branch: "master"
-gem "enju_manifestation_viewer", github: "next-l/enju_manifestation_viewer", branch: "1.1"
+gem "enju_manifestation_viewer", github: "next-l/enju_manifestation_viewer", branch: "master"
 gem "coveralls", require: false, group: :test
 
 # To use a debugger
