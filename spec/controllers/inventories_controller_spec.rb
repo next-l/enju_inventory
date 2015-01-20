@@ -27,9 +27,9 @@ describe InventoriesController do
     describe "When logged in as User" do
       login_fixture_user
 
-      it "assigns all empty as @inventories" do
+      it "assigns all nil as @inventories" do
         get :index
-        expect(assigns(:inventories)).to be_empty
+        expect(assigns(:inventories)).to be_nil
         expect(response).to be_forbidden
       end
     end
@@ -37,7 +37,7 @@ describe InventoriesController do
     describe "When not logged in" do
       it "assigns all inventories as @inventories" do
         get :index
-        expect(assigns(:inventories)).to be_empty
+        expect(assigns(:inventories)).to be_nil
         expect(response).to redirect_to(new_user_session_url)
       end
     end

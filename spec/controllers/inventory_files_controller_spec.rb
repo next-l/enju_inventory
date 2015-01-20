@@ -26,17 +26,17 @@ describe InventoryFilesController do
     describe "When logged in as User" do
       login_fixture_user
 
-      it "assigns empty as @inventory_files" do
+      it "assigns nil as @inventory_files" do
         get :index
-        expect(assigns(:inventory_files)).to be_empty
+        expect(assigns(:inventory_files)).to be_nil
         expect(response).to be_forbidden
       end
     end
 
     describe "When not logged in" do
-      it "assigns empty as @inventory_files" do
+      it "assigns nil as @inventory_files" do
         get :index
-        expect(assigns(:inventory_files)).to be_empty
+        expect(assigns(:inventory_files)).to be_nil
         expect(response).to redirect_to(new_user_session_url)
       end
     end
@@ -105,7 +105,7 @@ describe InventoryFilesController do
 
       it "should not assign the requested inventory_file as @inventory_file" do
         get :new
-        expect(assigns(:inventory_file)).to_not be_valid
+        expect(assigns(:inventory_file)).to be_nil
         expect(response).to be_forbidden
       end
     end
@@ -113,7 +113,7 @@ describe InventoryFilesController do
     describe "When not logged in" do
       it "should not assign the requested inventory_file as @inventory_file" do
         get :new
-        expect(assigns(:inventory_file)).to_not be_valid
+        expect(assigns(:inventory_file)).to be_nil
         expect(response).to redirect_to(new_user_session_url)
       end
     end
