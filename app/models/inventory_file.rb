@@ -4,7 +4,7 @@ class InventoryFile < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :user
 
-  if Rails.application.config_for(:enju_leaf)["uploaded_file"]["storage"] == :s3
+  if ENV['ENJU_STORAGE'] == 's3'
     has_attached_file :inventory, storage: :s3,
       s3_credentials: {
         access_key: ENV['AWS_ACCESS_KEY_ID'],
