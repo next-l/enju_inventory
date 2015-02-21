@@ -15,9 +15,22 @@ class InventoryFilesController < ApplicationController
   # GET /inventory_files/1
   # GET /inventory_files/1.json
   def show
+    if @inventory_file.inventory.path
+      unless ENV['ENJU_STORAGE'] == 's3'
+        file = @inventory_file.inventory.path
+      end
+    end
+
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => @inventory_file }
+      format.json { render json: @inventory_file }
+      format.download {
+        if ENV['ENJU_STORAGE'] == 's3'
+          redirect_to @inventory_file.inventory.expiring_url(10)
+        else
+          send_file file, filename: @inventory_file.inventory_file_name, type: 'application/octet-stream'
+        end
+      }
     end
   end
 
