@@ -14,7 +14,6 @@ end
 #  item_id           :integer
 #  inventory_file_id :integer
 #  note              :text
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
+#  created_at        :datetime
+#  updated_at        :datetime
 #
-
