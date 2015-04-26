@@ -1,0 +1,42 @@
+#content_detail.ui-corner-all.ui-widget-content
+  h1.title
+    = t('page.listing', :model => t('activerecord.models.inventory_file'))
+  #content_list
+    table.table.table-striped.index
+      tr
+        th
+          = t('activerecord.attributes.inventory_file.inventory_filename')
+        th
+          = t('activerecord.attributes.inventory_file.inventory_content_type')
+        th
+          = t('activerecord.attributes.inventory_file.inventory_file_size')
+        th
+          = t('activerecord.attributes.inventory_file.inventory_fingerprint')
+        th
+          = t('activerecord.models.user')
+        th
+      - @inventory_files.each do |inventory_file|
+        |  <tr class="line
+        = cycle("0", "1")
+        | "> 
+        td
+          = link_to inventory_file.inventory_filename, inventory_file
+          br
+          = inventory_file.created_at
+        td
+          = inventory_file.inventory_content_type
+        td
+          = inventory_file.inventory_file_size
+        td
+          = inventory_file.inventory_fingerprint
+        td
+          = link_to inventory_file.user.username, inventory_file.user.profile if inventory_file.user.try(:profile)
+        td
+          = link_to t('page.edit'), edit_inventory_file_path(inventory_file)
+          = link_to t('page.destroy'), inventory_file, :data => {:confirm => t('page.are_you_sure')}, :method => :delete
+        - - end
+    = paginate(@inventory_files)
+#submenu.ui-corner-all.ui-widget-content
+  ul
+    li
+      = link_to t('page.new', :model => t('activerecord.models.inventory_file')), new_inventory_file_path

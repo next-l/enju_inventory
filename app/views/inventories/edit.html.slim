@@ -1,0 +1,27 @@
+#content_detail.ui-corner-all.ui-widget-content
+  h1.title
+    = t('page.editing', :model => t('activerecord.models.inventory'))
+  #content_list
+    = form_for(@inventory) do |f|
+      = f.error_messages
+      .field
+        = f.label :item_id
+        br
+        = f.text_field :item_id
+      .field
+        = f.label :inventory_file_id
+        br
+        = f.text_field :inventory_file_id
+      .field
+        = f.label :note
+        br
+        = f.text_area :note
+      .actions
+        = f.submit
+      - - end
+#submenu.ui-corner-all.ui-widget-content
+  ul
+    li
+      = link_to t('page.show'), @inventory
+    li
+      = link_to t('page.back'), inventories_path

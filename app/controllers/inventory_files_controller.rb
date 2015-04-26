@@ -21,7 +21,7 @@ class InventoryFilesController < ApplicationController
       format.json { render json: @inventory_file }
       format.download {
         send_file @inventory_file.inventory.download,
-          filename: @inventory_file.inventory_file_name,
+          filename: @inventory_file.inventory_filename,
           type: 'application/octet-stream'
       }
     end

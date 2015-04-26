@@ -1,0 +1,17 @@
+#content_detail.ui-corner-all.ui-widget-content
+  h1.title
+    = t('page.new', :model => t('activerecord.models.inventory_file'))
+  #content_list
+    = form_for(@inventory_file, :html => {:multipart => true}) do |f|
+      = f.error_messages
+      .field
+        = f.label t('page.file')
+        br
+        = f.file_field :inventory
+      .actions
+        = f.submit
+      - - end
+#submenu.ui-corner-all.ui-widget-content
+  ul
+    li
+      = link_to t('page.back'), inventory_files_path

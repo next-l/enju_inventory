@@ -7,7 +7,7 @@ class CreateResourceImportFiles < ActiveRecord::Migration
       t.integer :user_id
       t.text :note
       t.datetime :executed_at
-      t.string :resource_import_file_name
+      t.string :resource_import_filename
       t.string :resource_import_content_type
       t.integer :resource_import_file_size
       t.datetime :resource_import_updated_at
