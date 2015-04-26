@@ -27,7 +27,7 @@ end
 #  note                   :text
 #  created_at             :datetime
 #  updated_at             :datetime
-#  inventory_file_name    :string
+#  inventory_filename     :string
 #  inventory_content_type :string
 #  inventory_size         :integer
 #  inventory_updated_at   :datetime
