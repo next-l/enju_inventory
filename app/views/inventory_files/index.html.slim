@@ -37,6 +37,6 @@
         - - end
     = paginate(@inventory_files)
 #submenu.ui-corner-all.ui-widget-content
-  ul
-    li
+  ul.list-group
+    li.list-group-item
       = link_to t('page.new', :model => t('activerecord.models.inventory_file')), new_inventory_file_path

@@ -35,8 +35,8 @@
         |  :
       = @inventory_file.note
 #submenu.ui-corner-all.ui-widget-content
-  ul
-    li
+  ul.list-group
+    li.list-group-item
       = link_to t('page.edit'), edit_inventory_file_path(@inventory_file)
-    li
+    li.list-group-item
       = back_to_index(flash[:page_info])
