@@ -27,6 +27,7 @@ class InventoryFilesController < ApplicationController
       format.download {
         if ENV['ENJU_STORAGE'] == 's3'
           send_data Faraday.get(@inventory_file.inventory.expiring_url).body.force_encoding('UTF-8'),
+            filename: File.basename(@inventory_file.inventory_file_name), type: 'application/octet-stream'
         else
           send_file file, filename: @inventory_file.inventory_file_name, type: 'application/octet-stream'
         end
