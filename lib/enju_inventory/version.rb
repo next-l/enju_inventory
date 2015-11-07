@@ -1,3 +1,3 @@
 module EnjuInventory
-  VERSION = "0.1.11.pre12"
+  VERSION = "0.1.11.pre13"
 end
