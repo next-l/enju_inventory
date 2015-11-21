@@ -1,7 +1,7 @@
 = EnjuInventory
-{<img src="https://secure.travis-ci.org/next-l/enju_inventory.png?branch=1.1" alt="Build Status" />}[http://travis-ci.org/next-l/enju_inventory]
-{<img src="https://coveralls.io/repos/next-l/enju_inventory/badge.png?branch=1.1" alt="Coverage Status" />}[https://coveralls.io/r/next-l/enju_inventory?branch=1.1]
-{<img src="https://hakiri.io/github/next-l/enju_inventory/1.1.svg" alt="security" />}[https://hakiri.io/github/next-l/enju_inventory/1.1]
+{<img src="https://travis-ci.org/next-l/enju_inventory.svg?branch=1.2" alt="Build Status" />}[https://travis-ci.org/next-l/enju_inventory]
+{<img src="https://coveralls.io/repos/next-l/enju_inventory/badge.svg?branch=1.2&service=github" alt="Coverage Status" />}[https://coveralls.io/github/next-l/enju_inventory?branch=1.2]
+{<img src="https://hakiri.io/github/next-l/enju_inventory/1.2.svg" alt="security" />}[https://hakiri.io/github/next-l/enju_inventory/1.2]
 
 This project rocks and uses MIT-LICENSE.
 
