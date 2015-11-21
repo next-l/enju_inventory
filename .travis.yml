@@ -1,8 +1,6 @@
 language: ruby
 cache: bundler
 rvm:
-  - 1.9.3
-  - 2.0.0
   - 2.1.7
   - 2.2.3
 before_script:
@@ -11,30 +9,10 @@ before_script:
   - bundle exec rake db:migrate
 services:
   - redis-server
-gemfile:
-  - gemfiles/rails_3.2.gemfile
-  - gemfiles/rails_4.1.gemfile
-  - gemfiles/rails_4.2.gemfile
 env:
   - DB=sqlite
   - DB=mysql
   - DB=postgresql
-matrix:
-  allow_failures:
-  - rvm: 1.9.3
-  exclude:
-  - rvm: 1.9.3
-    gemfile: gemfiles/rails_4.1.gemfile
-  - rvm: 1.9.3
-    gemfile: gemfiles/rails_4.2.gemfile
-  - rvm: 2.0.0
-    gemfile: gemfiles/rails_3.2.gemfile
-  - rvm: 2.0.0
-    gemfile: gemfiles/rails_4.2.gemfile
-  - rvm: 2.1.7
-    gemfile: gemfiles/rails_3.2.gemfile
-  - rvm: 2.2.3
-    gemfile: gemfiles/rails_3.2.gemfile
 notifications:
   slack:
     secure: duths/3pSH1nOJ5AKS8c8wdjnr906h5l6LYd+ONZzSqlR+oG1Z2+KuaIW0xVFucV4la1HEknXChWWuuHzU+Dsim5lhcIx42LNhQw6ZJwlanrre8jcdCzpWhs5j561PT733xRdrlxp8NvHGj/swbMo0OKXZ/A48+MH2xg1zpS4w4=

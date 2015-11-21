@@ -1,5 +1,7 @@
 class InventoriesController < ApplicationController
-  load_and_authorize_resource
+  before_action :set_inventory, only: [:show, :edit, :update, :destroy]
+  before_action :check_policy, only: [:index, :new, :create]
+
   # GET /inventories
   # GET /inventories.json
   def index
@@ -21,6 +23,15 @@ class InventoriesController < ApplicationController
   end
 
   private
+  def set_inventory
+    @inventory = Inventory.find(params[:id])
+    authorize @inventory
+  end
+
+  def check_policy
+    authorize Inventory
+  end
+
   def inventory_params
     params.require(:inventory).permit(
       :item_id, :inventory_id, :note

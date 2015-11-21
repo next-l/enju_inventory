@@ -29,7 +29,7 @@ describe InventoriesController do
 
       it "assigns all empty as @inventories" do
         get :index
-        expect(assigns(:inventories)).to be_empty
+        expect(assigns(:inventories)).to be_nil
         expect(response).to be_forbidden
       end
     end
@@ -37,7 +37,7 @@ describe InventoriesController do
     describe "When not logged in" do
       it "assigns all inventories as @inventories" do
         get :index
-        expect(assigns(:inventories)).to be_empty
+        expect(assigns(:inventories)).to be_nil
         expect(response).to redirect_to(new_user_session_url)
       end
     end
