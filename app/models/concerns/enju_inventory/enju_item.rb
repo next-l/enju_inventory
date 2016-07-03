@@ -9,7 +9,7 @@ module EnjuInventory
         integer :inventory_file_ids, :multiple => true
       end
 
-      def inventory_items(inventory_file, mode = 'not_on_shelf')
+      def self.inventory_items(inventory_file, mode = 'not_on_shelf')
         item_ids = Item.pluck(:id)
         inventory_item_ids = inventory_file.items.pluck('items.id')
         case mode
