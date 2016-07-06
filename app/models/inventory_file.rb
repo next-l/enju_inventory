@@ -16,7 +16,7 @@ class InventoryFile < ActiveRecord::Base
     file = File.open(inventory.download.path)
     reader = file.read
     reader.split.each do |row|
-      item = Item.where(:item_identifier => row.to_s.strip).first
+      item = Item.where(item_identifier: row.to_s.strip).first
       if item
         unless self.items.where(id: item.id).select('items.id').first
           self.items << item

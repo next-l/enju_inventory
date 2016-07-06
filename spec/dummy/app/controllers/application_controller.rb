@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::Base
-  include Pundit
   protect_from_forgery
 
-  enju_leaf
-  enju_library
+  include EnjuLeaf::Controller
+  include EnjuLibrary::Controller
+  include EnjuInventory::Controller
+  before_action :set_paper_trail_whodunnit
+  after_action :verify_authorized
+
+  include Pundit
 end
