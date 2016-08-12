@@ -1,4 +1,4 @@
-require 'enju_library'
+require 'enju_biblio'
 require 'paperclip'
 
 module EnjuInventory
