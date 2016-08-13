@@ -5,6 +5,8 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 require 'enju_inventory'
 require 'enju_leaf'
+require 'globalize'
+require 'globalize-accessors'
 
 module Dummy
   class Application < Rails::Application
