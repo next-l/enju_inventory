@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160813203039) do
+ActiveRecord::Schema.define(version: 20160814165332) do
 
   create_table "accepts", force: :cascade do |t|
     t.integer  "basket_id"
@@ -604,6 +604,75 @@ ActiveRecord::Schema.define(version: 20160813203039) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "message_request_transitions", force: :cascade do |t|
+    t.string   "to_state"
+    t.text     "metadata",           default: "{}"
+    t.integer  "sort_key"
+    t.integer  "message_request_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "most_recent"
+  end
+
+  add_index "message_request_transitions", ["message_request_id"], name: "index_message_request_transitions_on_message_request_id"
+  add_index "message_request_transitions", ["sort_key", "message_request_id"], name: "index_message_request_transitions_on_sort_key_and_request_id", unique: true
+
+  create_table "message_requests", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.integer  "message_template_id"
+    t.datetime "sent_at"
+    t.datetime "deleted_at"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "message_templates", force: :cascade do |t|
+    t.string   "status",                    null: false
+    t.text     "title",                     null: false
+    t.text     "body",                      null: false
+    t.integer  "position"
+    t.string   "locale",     default: "en"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "message_templates", ["status"], name: "index_message_templates_on_status", unique: true
+
+  create_table "message_transitions", force: :cascade do |t|
+    t.string   "to_state"
+    t.text     "metadata",    default: "{}"
+    t.integer  "sort_key"
+    t.integer  "message_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "most_recent"
+  end
+
+  add_index "message_transitions", ["message_id"], name: "index_message_transitions_on_message_id"
+  add_index "message_transitions", ["sort_key", "message_id"], name: "index_message_transitions_on_sort_key_and_message_id", unique: true
+
+  create_table "messages", force: :cascade do |t|
+    t.datetime "read_at"
+    t.integer  "receiver_id"
+    t.integer  "sender_id"
+    t.string   "subject",            null: false
+    t.text     "body"
+    t.integer  "message_request_id"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "depth"
+  end
+
+  add_index "messages", ["message_request_id"], name: "index_messages_on_message_request_id"
+  add_index "messages", ["parent_id"], name: "index_messages_on_parent_id"
+  add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id"
+  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id"
 
   create_table "owns", force: :cascade do |t|
     t.integer  "agent_id",   null: false
