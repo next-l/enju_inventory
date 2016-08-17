@@ -4,12 +4,11 @@ class CreateInventoryFiles < ActiveRecord::Migration
       t.string :filename
       t.string :content_type
       t.integer :size
-      t.integer :user_id
+      t.references :user, index: true
       t.text :note
 
       t.timestamps
     end
-    add_index :inventory_files, :user_id
   end
 
   def self.down
