@@ -17,17 +17,16 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"] - Dir["spec/dummy/log/*"] - Dir["spec/dummy/solr/{data,pids,default,development,test}/*"] - Dir["spec/dummy/tmp/*"]
 
   #s.add_dependency "enju_library", "~> 0.2.0.beta.1"
-  s.add_dependency "refile", "~> 0.6"
-  s.add_dependency "refile-mini_magick"
+  s.add_dependency "shrine"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "mysql2"
   s.add_development_dependency "pg"
-  s.add_development_dependency "rspec-rails", "~> 3.4"
+  s.add_development_dependency "rspec-rails", "~> 3.5"
   s.add_development_dependency "factory_girl_rails"
   #s.add_development_dependency "enju_leaf", "~> 1.2.0.beta.1"
   s.add_development_dependency "simplecov"
   s.add_development_dependency "annotate"
   s.add_development_dependency "redis-rails"
-  s.add_development_dependency "resque-scheduler", "~> 4.2"
+  s.add_development_dependency "resque-scheduler", "~> 4.3"
 end
