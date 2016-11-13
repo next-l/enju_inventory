@@ -9,8 +9,6 @@ before_script:
 services:
   - redis-server
 env:
-  - DB=sqlite
-  - DB=mysql
   - DB=postgresql
 notifications:
   slack:
