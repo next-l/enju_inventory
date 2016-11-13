@@ -20,9 +20,7 @@ class InventoryFilesController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @inventory_file }
       format.download {
-        send_file @inventory_file.inventory.download,
-          filename: @inventory_file.inventory_filename,
-          type: 'application/octet-stream'
+        send_file @inventory_file.attachment.download.path, filename: @inventory_file.attachment.metadata['filename'], type: 'application/octet-stream'
       }
     end
   end
@@ -98,6 +96,6 @@ class InventoryFilesController < ApplicationController
   end
 
   def inventory_file_params
-    params.require(:inventory_file).permit(:inventory, :note)
+    params.require(:inventory_file).permit(:attachment, :note)
   end
 end

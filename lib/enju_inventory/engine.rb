@@ -1,6 +1,4 @@
-require "enju_library"
-require "mini_magick"
-require "shrine"
+require 'enju_biblio'
 
 module EnjuInventory
   class Engine < ::Rails::Engine

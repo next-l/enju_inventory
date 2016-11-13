@@ -1,11 +1,10 @@
-# -*- encoding: utf-8 -*-
-require 'spec_helper'
+require 'rails_helper'
 
 describe InventoryFile do
   fixtures :users
 
   before(:each) do
-    @file = InventoryFile.new :inventory => File.new("#{Rails.root.to_s}/../../examples/inventory_file_sample.tsv")
+    @file = InventoryFile.new :attachment => File.open("#{Rails.root.to_s}/../../examples/inventory_file_sample.tsv")
     @file.user = users(:admin)
     @file.save
   end
@@ -27,10 +26,9 @@ end
 #  note                   :text
 #  created_at             :datetime
 #  updated_at             :datetime
-#  inventory_filename     :string
+#  inventory_file_name    :string
 #  inventory_content_type :string
-#  inventory_size         :integer
+#  inventory_file_size    :integer
 #  inventory_updated_at   :datetime
 #  inventory_fingerprint  :string
-#  inventory_id           :string
 #

@@ -1,34 +1,24 @@
 class InventoryFile < ActiveRecord::Base
-  has_many :inventories, :dependent => :destroy
-  has_many :items, :through => :inventories
+  include AttachmentUploader[:attachment]
+  has_many :inventories, dependent: :destroy
+  has_many :items, through: :inventories
   belongs_to :user
-  validates_presence_of :user
-
-  attachment :inventory
-  #validates_attachment_content_type :inventory, :content_type => ['text/csv', 'text/plain', 'text/tab-separated-values']
-  validates :inventory, presence: true, on: :create
-  before_create :set_fingerprint
+  validates :user, presence: true
+  validates :attachment, presence: true, on: :create
 
   paginates_per 10
 
   def import
-    self.reload
-    file = File.open(inventory.download.path)
+    reload
+    file = File.open(attachment.download.path)
     reader = file.read
     reader.split.each do |row|
       item = Item.where(item_identifier: row.to_s.strip).first
-      if item
-        unless self.items.where(id: item.id).select('items.id').first
-          self.items << item
-        end
-      end
+      next unless item
+      items << item unless items.where(id: item.id).select('items.id').first
     end
     file.close
     true
-  end
-
-  def set_fingerprint
-    self.inventory_fingerprint = Digest::SHA1.file(inventory.download.path).hexdigest
   end
 end
 
@@ -44,10 +34,9 @@ end
 #  note                   :text
 #  created_at             :datetime
 #  updated_at             :datetime
-#  inventory_filename     :string
+#  inventory_file_name    :string
 #  inventory_content_type :string
-#  inventory_size         :integer
+#  inventory_file_size    :integer
 #  inventory_updated_at   :datetime
 #  inventory_fingerprint  :string
-#  inventory_id           :string
 #
