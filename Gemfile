@@ -19,6 +19,5 @@ gem "jquery-rails"
 gem "sinatra", "~> 2.0.0.beta2"
 gem "rails-controller-testing"
 
-
 # To use debugger
 # gem 'debugger'
