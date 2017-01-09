@@ -1,5 +1,4 @@
-# -*- encoding: utf-8 -*-
-require 'spec_helper'
+require 'rails_helper'
 
 describe InventoryFilesController do
   fixtures :all
@@ -26,7 +25,7 @@ describe InventoryFilesController do
     describe "When logged in as User" do
       login_fixture_user
 
-      it "assigns nil as @inventory_files" do
+      it "assigns empty as @inventory_files" do
         get :index
         expect(assigns(:inventory_files)).to be_nil
         expect(response).to be_forbidden
@@ -34,7 +33,7 @@ describe InventoryFilesController do
     end
 
     describe "When not logged in" do
-      it "assigns nil as @inventory_files" do
+      it "assigns empty as @inventory_files" do
         get :index
         expect(assigns(:inventory_files)).to be_nil
         expect(response).to redirect_to(new_user_session_url)
@@ -47,7 +46,7 @@ describe InventoryFilesController do
       login_fixture_admin
 
       it "assigns the requested inventory_file as @inventory_file" do
-        get :show, :id => 1
+        get :show, params: { :id => 1 }
         expect(assigns(:inventory_file)).to eq(InventoryFile.find(1))
       end
     end
@@ -56,7 +55,7 @@ describe InventoryFilesController do
       login_fixture_librarian
 
       it "assigns the requested inventory_file as @inventory_file" do
-        get :show, :id => 1
+        get :show, params: { :id => 1 }
         expect(assigns(:inventory_file)).to eq(InventoryFile.find(1))
       end
     end
@@ -65,14 +64,14 @@ describe InventoryFilesController do
       login_fixture_user
 
       it "assigns the requested inventory_file as @inventory_file" do
-        get :show, :id => 1
+        get :show, params: { :id => 1 }
         expect(assigns(:inventory_file)).to eq(InventoryFile.find(1))
       end
     end
 
     describe "When not logged in" do
       it "assigns the requested inventory_file as @inventory_file" do
-        get :show, :id => 1
+        get :show, params: { :id => 1 }
         expect(assigns(:inventory_file)).to eq(InventoryFile.find(1))
         expect(response).to redirect_to(new_user_session_url)
       end
@@ -124,7 +123,7 @@ describe InventoryFilesController do
       login_fixture_librarian
 
       it "should create inventory_file" do
-        post :create, :inventory_file => {:inventory => fixture_file_upload("/../../examples/inventory_file_sample.tsv", 'text/csv') }
+        post :create, params: { :inventory_file => { :attachment => fixture_file_upload("/../../examples/inventory_file_sample.tsv", 'text/csv') } }
         assigns(:inventory_file).save!
         expect(assigns(:inventory_file)).to be_valid
         expect(assigns(:inventory_file).user.username).to eq @user.username
@@ -136,14 +135,14 @@ describe InventoryFilesController do
       login_fixture_user
 
       it "should be forbidden" do
-        post :create, :inventory_file => {:inventory => fixture_file_upload("/../../examples/inventory_file_sample.tsv", 'text/csv') }
+        post :create, params: { :inventory_file => { :attachment => fixture_file_upload("/../../examples/inventory_file_sample.tsv", 'text/csv') } }
         expect(response).to be_forbidden
       end
     end
 
     describe "When not logged in" do
       it "should be redirect to new session url" do
-        post :create, :inventory_file => {:inventory => fixture_file_upload("/../../examples/inventory_file_sample.tsv", 'text/csv') }
+        post :create, params: { :inventory_file => { :attachment => fixture_file_upload("/../../examples/inventory_file_sample.tsv", 'text/csv') } }
         expect(response).to redirect_to new_user_session_url
       end
     end
@@ -155,7 +154,7 @@ describe InventoryFilesController do
 
       it "assigns the requested inventory_file as @inventory_file" do
         inventory_file = inventory_files(:inventory_file_00001)
-        get :edit, :id => inventory_file.id
+        get :edit, params: { :id => inventory_file.id }
         expect(assigns(:inventory_file)).to eq(inventory_file)
       end
     end
@@ -165,7 +164,7 @@ describe InventoryFilesController do
 
       it "assigns the requested inventory_file as @inventory_file" do
         inventory_file = inventory_files(:inventory_file_00001)
-        get :edit, :id => inventory_file.id
+        get :edit, params: { :id => inventory_file.id }
         expect(assigns(:inventory_file)).to eq(inventory_file)
       end
     end
@@ -175,7 +174,7 @@ describe InventoryFilesController do
 
       it "assigns the requested inventory_file as @inventory_file" do
         inventory_file = inventory_files(:inventory_file_00001)
-        get :edit, :id => inventory_file.id
+        get :edit, params: { :id => inventory_file.id }
         expect(response).to be_forbidden
       end
     end
@@ -183,7 +182,7 @@ describe InventoryFilesController do
     describe "When not logged in" do
       it "should not assign the requested inventory_file as @inventory_file" do
         inventory_file = inventory_files(:inventory_file_00001)
-        get :edit, :id => inventory_file.id
+        get :edit, params: { :id => inventory_file.id }
         expect(response).to redirect_to(new_user_session_url)
       end
     end
@@ -194,7 +193,7 @@ describe InventoryFilesController do
       login_fixture_admin
 
       it "should update inventory_file" do
-        put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { note: "test" }
+        put :update, params: { :id => inventory_files(:inventory_file_00003).id, :inventory_file => { note: "test" } }
         expect(response).to redirect_to inventory_file_url(assigns(:inventory_file))
       end
     end
@@ -203,7 +202,7 @@ describe InventoryFilesController do
       login_fixture_librarian
 
       it "should update inventory_file" do
-        put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { note: "test" }
+        put :update, params: { :id => inventory_files(:inventory_file_00003).id, :inventory_file => { note: "test" } }
         expect(response).to redirect_to inventory_file_url(assigns(:inventory_file))
       end
     end
@@ -212,14 +211,14 @@ describe InventoryFilesController do
       login_fixture_user
 
       it "should not update inventory_file" do
-        put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { note: "test" }
+        put :update, params: { :id => inventory_files(:inventory_file_00003).id, :inventory_file => { note: "test" } }
         expect(response).to be_forbidden
       end
     end
 
     describe "When not logged in" do
       it "should not update inventory_file" do
-        put :update, :id => inventory_files(:inventory_file_00003).id, :inventory_file => { note: "test" }
+        put :update, params: { :id => inventory_files(:inventory_file_00003).id, :inventory_file => { note: "test" } }
         expect(response).to redirect_to new_user_session_url
       end
     end
@@ -234,11 +233,11 @@ describe InventoryFilesController do
       login_fixture_admin
 
       it "destroys the requested inventory_file" do
-        delete :destroy, :id => @inventory_file.id
+        delete :destroy, params: { :id => @inventory_file.id }
       end
 
       it "redirects to the inventory_files list" do
-        delete :destroy, :id => @inventory_file.id
+        delete :destroy, params: { :id => @inventory_file.id }
         expect(response).to redirect_to(inventory_files_url)
       end
     end
@@ -247,11 +246,11 @@ describe InventoryFilesController do
       login_fixture_librarian
 
       it "destroys the requested inventory_file" do
-        delete :destroy, :id => @inventory_file.id
+        delete :destroy, params: { :id => @inventory_file.id }
       end
 
       it "redirects to the inventory_files list" do
-        delete :destroy, :id => @inventory_file.id
+        delete :destroy, params: { :id => @inventory_file.id }
         expect(response).to redirect_to(inventory_files_url)
       end
     end
@@ -260,22 +259,22 @@ describe InventoryFilesController do
       login_fixture_user
 
       it "destroys the requested inventory_file" do
-        delete :destroy, :id => @inventory_file.id
+        delete :destroy, params: { :id => @inventory_file.id }
       end
 
       it "should be forbidden" do
-        delete :destroy, :id => @inventory_file.id
+        delete :destroy, params: { :id => @inventory_file.id }
         expect(response).to be_forbidden
       end
     end
 
     describe "When not logged in" do
       it "destroys the requested inventory_file" do
-        delete :destroy, :id => @inventory_file.id
+        delete :destroy, params: { :id => @inventory_file.id }
       end
 
       it "should be forbidden" do
-        delete :destroy, :id => @inventory_file.id
+        delete :destroy, params: { :id => @inventory_file.id }
         expect(response).to redirect_to(new_user_session_url)
       end
     end

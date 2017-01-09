@@ -1,20 +1,20 @@
 language: ruby
 cache: bundler
 rvm:
-  - 2.1.9
   - 2.2.5
   - 2.3.1
 before_script:
-  - mysql -e 'create database enju_test'
-  - psql -c 'create database enju_test;' -U postgres
+  - psql -c 'create database enju_inventory_dummy_test;' -U postgres
   - bundle exec rake db:migrate
+after_script:
+  - bundle exec codeclimate-test-reporter
 services:
   - redis-server
 env:
-  - DB=sqlite
-  - DB=mysql
   - DB=postgresql
 notifications:
   slack:
     secure: duths/3pSH1nOJ5AKS8c8wdjnr906h5l6LYd+ONZzSqlR+oG1Z2+KuaIW0xVFucV4la1HEknXChWWuuHzU+Dsim5lhcIx42LNhQw6ZJwlanrre8jcdCzpWhs5j561PT733xRdrlxp8NvHGj/swbMo0OKXZ/A48+MH2xg1zpS4w4=
 sudo: false
+addons:
+  postgresql: "9.4"
