@@ -1,13 +1,11 @@
 class InventoryFile < ActiveRecord::Base
-  has_many :inventories, :dependent => :destroy
-  has_many :items, :through => :inventories
+  has_many :inventories, dependent: :destroy
+  has_many :items, through: :inventories
   belongs_to :user
   validates_presence_of :user
 
-  attachment :inventory
-  #validates_attachment_content_type :inventory, :content_type => ['text/csv', 'text/plain', 'text/tab-separated-values']
-  validates :inventory, presence: true, on: :create
-  before_create :set_fingerprint
+  include AttachmentUploader[:attachment]
+  validates :attachment, presence: true, on: :create
 
   paginates_per 10
 
