@@ -18,17 +18,14 @@ end
 #
 # Table name: inventory_files
 #
-#  id                     :integer          not null, primary key
-#  filename               :string
-#  content_type           :string
-#  size                   :integer
-#  user_id                :integer
-#  note                   :text
-#  created_at             :datetime
-#  updated_at             :datetime
-#  inventory_file_name    :string
-#  inventory_content_type :string
-#  inventory_file_size    :integer
-#  inventory_updated_at   :datetime
-#  inventory_fingerprint  :string
+#  id                    :integer          not null, primary key
+#  filename              :string
+#  content_type          :string
+#  size                  :integer
+#  user_id               :integer
+#  note                  :text
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  inventory_fingerprint :string
+#  attachment_data       :jsonb
 #

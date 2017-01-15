@@ -14,9 +14,9 @@ end
 # Table name: inventories
 #
 #  id                :integer          not null, primary key
-#  item_id           :integer
+#  item_id           :uuid
 #  inventory_file_id :integer
 #  note              :text
-#  created_at        :datetime
-#  updated_at        :datetime
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #

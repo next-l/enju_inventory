@@ -1,15 +1,11 @@
-class CreateInventories < ActiveRecord::Migration
-  def self.up
+class CreateInventories < ActiveRecord::Migration[5.0]
+  def change
     create_table :inventories do |t|
-      t.references :item, index: true
-      t.references :inventory_file, index: true
+      t.references :item, foreign_key: true, type: :uuid
+      t.references :inventory_file, foreign_key: true
       t.text :note
 
       t.timestamps
     end
-  end
-
-  def self.down
-    drop_table :inventories
   end
 end
