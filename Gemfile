@@ -16,7 +16,6 @@ gem "enju_library", github: "next-l/enju_library"
 gem "enju_manifestation_viewer", github: "next-l/enju_manifestation_viewer"
 gem "codeclimate-test-reporter", group: :test, require: false
 gem "jquery-rails"
-gem "sinatra", "~> 2.0.0.beta2"
 gem "rails-controller-testing"
 
 # To use debugger
