@@ -1,11 +1,10 @@
 language: ruby
 cache: bundler
 rvm:
-  - 2.1.9
   - 2.2.5
   - 2.3.1
 before_script:
-  - mysql -e 'create database enju_test'
+  - mysql -e 'create database enju_test DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;'
   - psql -c 'create database enju_test;' -U postgres
   - bundle exec rake db:migrate
 services:
@@ -18,9 +17,6 @@ env:
   - DB=mysql
   - DB=postgresql
 matrix:
-  exclude:
-    - rvm: 2.1.9
-      gemfile: gemfiles/rails_5.0.gemfile
   allow_failures:
     - gemfile: gemfiles/rails_5.0.gemfile
 notifications:
