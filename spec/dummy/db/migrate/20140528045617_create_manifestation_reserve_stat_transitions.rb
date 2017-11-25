@@ -2,10 +2,10 @@ class CreateManifestationReserveStatTransitions < ActiveRecord::Migration[5.1]
   def change
     create_table :manifestation_reserve_stat_transitions do |t|
       t.string :to_state, null: false
-      t.jsonb :metadata, default: "{}"
+      t.jsonb :metadata, default: {}
       t.integer :sort_key, null: false
       t.integer :manifestation_reserve_stat_id, null: false
-      t.timestamps null: false
+      t.timestamps
     end
 
     add_index :manifestation_reserve_stat_transitions, :manifestation_reserve_stat_id, name: 'index_manifestation_reserve_stat_transitions_on_stat_id'

@@ -1,4 +1,4 @@
-class CreateInventoryFiles < ActiveRecord::Migration[5.0]
+class CreateInventoryFiles < ActiveRecord::Migration[5.1]
   def change
     create_table :inventory_files do |t|
       t.string :filename

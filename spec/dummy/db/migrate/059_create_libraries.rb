@@ -1,4 +1,4 @@
-class CreateLibraries < ActiveRecord::Migration[5.0]
+class CreateLibraries < ActiveRecord::Migration[5.1]
   def change
     create_table :libraries, id: :uuid, default: 'gen_random_uuid()' do |t|
       t.string :name, null: false, index: {unique: true}
@@ -20,7 +20,6 @@ class CreateLibraries < ActiveRecord::Migration[5.0]
       t.integer :country_id
 
       t.timestamps
-      t.datetime :deleted_at
     end
     add_index :libraries, :library_group_id
   end

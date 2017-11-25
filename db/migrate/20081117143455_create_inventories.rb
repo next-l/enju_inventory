@@ -1,4 +1,4 @@
-class CreateInventories < ActiveRecord::Migration[5.0]
+class CreateInventories < ActiveRecord::Migration[5.1]
   def change
     create_table :inventories do |t|
       t.references :item, foreign_key: true, type: :uuid
