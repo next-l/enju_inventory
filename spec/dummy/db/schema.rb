@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171126135238) do
+ActiveRecord::Schema.define(version: 20180102162311) do
 
   create_table "accepts", force: :cascade do |t|
     t.integer  "basket_id"
@@ -160,12 +160,14 @@ ActiveRecord::Schema.define(version: 20171126135238) do
     t.string   "birth_date"
     t.string   "death_date"
     t.string   "agent_identifier"
+    t.integer  "profile_id"
   end
 
   add_index "agents", ["agent_identifier"], name: "index_agents_on_agent_identifier"
   add_index "agents", ["country_id"], name: "index_agents_on_country_id"
   add_index "agents", ["full_name"], name: "index_agents_on_full_name"
   add_index "agents", ["language_id"], name: "index_agents_on_language_id"
+  add_index "agents", ["profile_id"], name: "index_agents_on_profile_id"
   add_index "agents", ["required_role_id"], name: "index_agents_on_required_role_id"
 
   create_table "baskets", force: :cascade do |t|
@@ -413,7 +415,7 @@ ActiveRecord::Schema.define(version: 20171126135238) do
     t.string   "binding_item_identifier"
     t.string   "binding_call_number"
     t.datetime "binded_at"
-    t.integer  "manifestation_id"
+    t.integer  "manifestation_id",                        null: false
   end
 
   add_index "items", ["binding_item_identifier"], name: "index_items_on_binding_item_identifier"
@@ -504,6 +506,8 @@ ActiveRecord::Schema.define(version: 20171126135238) do
     t.string   "header_logo_content_type"
     t.integer  "header_logo_file_size"
     t.datetime "header_logo_updated_at"
+    t.boolean  "csv_charset_conversion",        default: false,                    null: false
+    t.text     "header_logo_meta"
   end
 
   add_index "library_groups", ["short_name"], name: "index_library_groups_on_short_name"
