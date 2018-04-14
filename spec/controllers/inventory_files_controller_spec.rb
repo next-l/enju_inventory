@@ -85,7 +85,7 @@ describe InventoryFilesController do
       it 'assigns the requested inventory_file as @inventory_file' do
         get :new
         expect(assigns(:inventory_file)).to_not be_valid
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
@@ -95,7 +95,7 @@ describe InventoryFilesController do
       it 'should not assign the requested inventory_file as @inventory_file' do
         get :new
         expect(assigns(:inventory_file)).to_not be_valid
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
