@@ -9,7 +9,7 @@ class InventoryFilesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @inventory_files }
+      format.json { render json: @inventory_files }
     end
   end
 
@@ -43,7 +43,7 @@ class InventoryFilesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render :json => @inventory_file }
+      format.json { render json: @inventory_file }
     end
   end
 
@@ -59,13 +59,13 @@ class InventoryFilesController < ApplicationController
 
     respond_to do |format|
       if @inventory_file.save
-        flash[:notice] = t('controller.successfully_created', :model => t('activerecord.models.inventory_file'))
+        flash[:notice] = t('controller.successfully_created', model: t('activerecord.models.inventory_file'))
         @inventory_file.import
         format.html { redirect_to(@inventory_file) }
-        format.json { render :json => @inventory_file, :status => :created, :location => @inventory_file }
+        format.json { render json: @inventory_file, status: :created, location: @inventory_file }
       else
-        format.html { render :action => "new" }
-        format.json { render :json => @inventory_file.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.json { render json: @inventory_file.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -75,12 +75,12 @@ class InventoryFilesController < ApplicationController
   def update
     respond_to do |format|
       if @inventory_file.update_attributes(inventory_file_params)
-        flash[:notice] = t('controller.successfully_updated', :model => t('activerecord.models.inventory_file'))
+        flash[:notice] = t('controller.successfully_updated', model: t('activerecord.models.inventory_file'))
         format.html { redirect_to(@inventory_file) }
         format.json { head :no_content }
       else
-        format.html { render :action => "edit" }
-        format.json { render :json => @inventory_file.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.json { render json: @inventory_file.errors, status: :unprocessable_entity }
       end
     end
   end

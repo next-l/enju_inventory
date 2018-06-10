@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :admin, :class => User do |f|
+  factory :admin, class: User do |f|
     f.sequence(:username){|n| "admin_#{n}"}
     f.sequence(:email){|n| "admin_#{n}@example.jp"}
     f.role {Role.find_by_name('Administrator')}
@@ -10,7 +10,7 @@ FactoryBot.define do
     f.sequence(:user_number){|n| "user_number_#{n}"}
   end
 
-  factory :librarian, :class => User do |f|
+  factory :librarian, class: User do |f|
     f.sequence(:username){|n| "librarian_#{n}"}
     f.sequence(:email){|n| "librarian_#{n}@example.jp"}
     f.role {Role.find_by_name('Librarian')}
@@ -21,7 +21,7 @@ FactoryBot.define do
     f.sequence(:user_number){|n| "user_number_#{n}"}
   end
 
-  factory :user, :class => User do |f|
+  factory :user, class: User do |f|
     f.sequence(:username){|n| "user_#{n}"}
     f.sequence(:email){|n| "user_#{n}@example.jp"}
     f.role {Role.find_by_name('User')}
@@ -32,6 +32,6 @@ FactoryBot.define do
     f.sequence(:user_number){|n| "user_number_#{n}"}
   end
 
-  factory :invalid_user, :class => User do |f|
+  factory :invalid_user, class: User do |f|
   end
 end

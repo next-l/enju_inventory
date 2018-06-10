@@ -48,7 +48,7 @@ describe InventoriesController do
       login_fixture_admin
 
       it "assigns the requested inventory as @inventory" do
-        get :show, :id => 1
+        get :show, id: 1
         expect(assigns(:inventory)).to eq(Inventory.find(1))
         expect(response).to be_success
       end
@@ -58,7 +58,7 @@ describe InventoriesController do
       login_fixture_librarian
 
       it "assigns the requested inventory as @inventory" do
-        get :show, :id => 1
+        get :show, id: 1
         expect(assigns(:inventory)).to eq(Inventory.find(1))
         expect(response).to be_success
       end
@@ -68,7 +68,7 @@ describe InventoriesController do
       login_fixture_user
 
       it "assigns the requested inventory as @inventory" do
-        get :show, :id => 1
+        get :show, id: 1
         expect(assigns(:inventory)).to eq(Inventory.find(1))
         expect(response).to be_forbidden
       end
@@ -76,7 +76,7 @@ describe InventoriesController do
 
     describe "When not logged in" do
       it "assigns the requested inventory as @inventory" do
-        get :show, :id => 1
+        get :show, id: 1
         expect(assigns(:inventory)).to eq(Inventory.find(1))
         expect(response).to redirect_to(new_user_session_url)
       end
