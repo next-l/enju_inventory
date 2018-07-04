@@ -1,4 +1,4 @@
-class CreateInventoryFiles < ActiveRecord::Migration
+class CreateInventoryFiles < ActiveRecord::Migration[4.2]
   def self.up
     create_table :inventory_files do |t|
       t.string :filename
