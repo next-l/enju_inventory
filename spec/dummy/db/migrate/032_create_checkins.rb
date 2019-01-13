@@ -1,10 +1,14 @@
-class CreateCheckins < ActiveRecord::Migration[5.1]
-  def change
+class CreateCheckins < ActiveRecord::Migration[4.2]
+  def self.up
     create_table :checkins do |t|
-      t.references :checkout, foreign_key: true, null: false, type: :uuid
-      t.references :librarian, foreign_key: {to_table: :users}, null: false
-      t.references :basket, foreign_key: true, null: false, type: :uuid
+      t.references :item, index: true, foreign_key: true, null: false
+      t.references :librarian, index: true
+      t.references :basket, index: true
       t.timestamps
     end
+  end
+
+  def self.down
+    drop_table :checkins
   end
 end

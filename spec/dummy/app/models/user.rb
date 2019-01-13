@@ -5,3 +5,5 @@ class User < ActiveRecord::Base
 
   include EnjuSeed::EnjuUser
 end
+
+Item.include(EnjuInventory::EnjuItem)

@@ -1,13 +1,21 @@
-class CreateReserves < ActiveRecord::Migration[5.1]
-  def change
-    create_table :reserves, id: :uuid, default: 'gen_random_uuid()' do |t|
-      t.references :user, foreign_key: true, null: false
-      t.references :manifestation, foreign_key: true, null: false, type: :uuid
-      t.references :item, foreign_key: true, type: :uuid
+class CreateReserves < ActiveRecord::Migration[4.2]
+  def self.up
+    create_table :reserves do |t|
+      t.references :user, index: true, foreign_key: true, null: false
+      t.references :manifestation, index: true, null: false
+      t.references :item, index: true
       t.references :request_status_type, null: false
+      t.datetime :checked_out_at
       t.timestamps
-      t.boolean :expiration_notice_to_patron, default: false, null: false
-      t.boolean :expiration_notice_to_library, default: false, null: false
+      t.datetime :canceled_at
+      t.datetime :expired_at
+      t.datetime :deleted_at
+      t.boolean :expiration_notice_to_patron, default: false
+      t.boolean :expiration_notice_to_library, default: false
     end
+  end
+
+  def self.down
+    drop_table :reserves
   end
 end

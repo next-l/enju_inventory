@@ -18,6 +18,8 @@ module EnjuInventory
         when 'not_in_catalog'
           Item.where(id: (inventory_item_ids - item_ids))
         end
+      rescue
+        nil
       end
     end
   end
