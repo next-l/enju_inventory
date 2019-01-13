@@ -1,4 +1,4 @@
-class CreateInventories < ActiveRecord::Migration[4.2]
+class CreateInventories < ActiveRecord::Migration[5.2]
   def self.up
     create_table :inventories do |t|
       t.references :item, index: true

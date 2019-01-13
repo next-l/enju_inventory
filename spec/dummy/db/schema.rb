@@ -561,24 +561,24 @@ ActiveRecord::Schema.define(version: 2019_01_02_034126) do
     t.index ["user_id"], name: "index_import_requests_on_user_id"
   end
 
-  create_table "inventories", id: :serial, force: :cascade do |t|
-    t.integer "item_id"
-    t.integer "inventory_file_id"
+  create_table "inventories", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "inventory_file_id"
     t.text "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["inventory_file_id"], name: "index_inventories_on_inventory_file_id"
     t.index ["item_id"], name: "index_inventories_on_item_id"
   end
 
-  create_table "inventory_files", id: :serial, force: :cascade do |t|
+  create_table "inventory_files", force: :cascade do |t|
     t.string "filename"
     t.string "content_type"
     t.integer "size"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.text "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "inventory_file_name"
     t.string "inventory_content_type"
     t.integer "inventory_file_size"
