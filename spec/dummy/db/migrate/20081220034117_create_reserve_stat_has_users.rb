@@ -1,4 +1,4 @@
-class CreateReserveStatHasUsers < ActiveRecord::Migration[4.2]
+class CreateReserveStatHasUsers < ActiveRecord::Migration[5.2]
   def self.up
     create_table :reserve_stat_has_users do |t|
       t.references :user_reserve_stat, index: true, foreign_key: true, null: false

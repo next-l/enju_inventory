@@ -1,4 +1,4 @@
-class CreateDemands < ActiveRecord::Migration[4.2]
+class CreateDemands < ActiveRecord::Migration[5.2]
   def change
     create_table :demands do |t|
       t.references :user, index: true, foreign_key: true

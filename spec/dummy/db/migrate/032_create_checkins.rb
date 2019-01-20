@@ -1,4 +1,4 @@
-class CreateCheckins < ActiveRecord::Migration[4.2]
+class CreateCheckins < ActiveRecord::Migration[5.2]
   def self.up
     create_table :checkins do |t|
       t.references :item, index: true, foreign_key: true, null: false
