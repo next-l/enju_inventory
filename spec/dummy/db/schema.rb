@@ -520,15 +520,6 @@ ActiveRecord::Schema.define(version: 2019_01_02_034126) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "identifier_types", id: :serial, force: :cascade do |t|
-    t.string "name"
-    t.text "display_name"
-    t.text "note"
-    t.integer "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "identifiers", force: :cascade do |t|
     t.string "body", null: false
     t.integer "identifier_type_id", null: false
