@@ -19,7 +19,7 @@ describe ItemsController do
         get :index, params: { inventory_file_id: 1 }
         expect(response).to be_successful
         assigns(:inventory_file).should eq InventoryFile.find(1)
-        expect(assigns(:items)).to eq Item.inventory_items(assigns(:inventory_file), 'not_on_shelf').order('items.id').page(1)
+        expect(assigns(:items)).to eq Item.inventory_items(assigns(:inventory_file), 'not_on_shelf').order('items.created_at').page(1)
       end
     end
 
