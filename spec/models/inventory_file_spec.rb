@@ -4,9 +4,8 @@ describe InventoryFile do
   fixtures :users
 
   before(:each) do
-    @file = InventoryFile.new inventory: File.new("#{Rails.root.to_s}/../../examples/inventory_file_sample.tsv")
-    @file.user = users(:admin)
-    @file.save
+    @file = InventoryFile.create!(user: users(:admin))
+    @file.inventory.attach(io: File.new("#{Rails.root.to_s}/../../examples/inventory_file_sample.tsv"), filename: 'attachment.txt')
   end
 
   it "should be imported" do
