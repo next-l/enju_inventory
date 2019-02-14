@@ -9,8 +9,6 @@ admin:
   required_role_id: 4
   user_number: "00001"
   locale: "en"
-  checkout_icalendar_token: 577830b08ecf9c4c4333d599a57a6f44a7fe76c0
-  save_checkout_history: true
 librarian1: 
   updated_at: 2008-05-31 12:41:16.337474 +09:00
   user_group_id: 2d387a28-f738-4afb-93d4-c42e0b593435
@@ -21,7 +19,6 @@ librarian1:
   required_role_id: 1
   user_number: "00002"
   locale: "ja"
-  save_checkout_history: false
 user1: 
   updated_at: 2008-05-31 13:02:25.101261 +09:00
   user_group_id: 2d387a28-f738-4afb-93d4-c42e0b593435
@@ -32,7 +29,6 @@ user1:
   required_role_id: 3
   user_number: "00003"
   locale: "ja"
-  save_checkout_history: true
 librarian2: 
   updated_at: 2008-05-31 12:42:23.340575 +09:00
   user_group_id: 2d387a28-f738-4afb-93d4-c42e0b593435
@@ -73,7 +69,6 @@ user4:
   required_role_id: 3
   user_number: "00007"
   locale: "ja"
-  checkout_icalendar_token: e3e0277cbba03183c3a12d2b740f3eabebd7df0d
 
 # == Schema Information
 #
