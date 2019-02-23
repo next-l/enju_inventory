@@ -23,11 +23,8 @@ end
 #
 # Table name: inventory_files
 #
-#  id                     :bigint(8)        not null, primary key
-#  filename               :string
-#  content_type           :string
-#  size                   :integer
-#  user_id                :bigint(8)
+#  id                     :uuid             not null, primary key
+#  user_id                :bigint(8)        not null
 #  note                   :text
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null

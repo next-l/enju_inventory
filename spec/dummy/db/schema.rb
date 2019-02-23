@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2019_02_08_135957) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
+    t.uuid "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
@@ -588,7 +588,7 @@ ActiveRecord::Schema.define(version: 2019_02_08_135957) do
 
   create_table "inventories", force: :cascade do |t|
     t.uuid "item_id"
-    t.bigint "inventory_file_id"
+    t.uuid "inventory_file_id"
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -596,11 +596,8 @@ ActiveRecord::Schema.define(version: 2019_02_08_135957) do
     t.index ["item_id"], name: "index_inventories_on_item_id"
   end
 
-  create_table "inventory_files", force: :cascade do |t|
-    t.string "filename"
-    t.string "content_type"
-    t.integer "size"
-    t.bigint "user_id"
+  create_table "inventory_files", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -1580,6 +1577,8 @@ ActiveRecord::Schema.define(version: 2019_02_08_135957) do
   add_foreign_key "import_requests", "manifestations"
   add_foreign_key "import_requests", "users"
   add_foreign_key "inventories", "inventory_files"
+  add_foreign_key "inventories", "items"
+  add_foreign_key "inventory_files", "users"
   add_foreign_key "isbn_record_and_manifestations", "isbn_records"
   add_foreign_key "isbn_record_and_manifestations", "manifestations"
   add_foreign_key "issn_record_and_manifestations", "issn_records"
