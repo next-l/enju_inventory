@@ -1,23 +1,14 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 inventory_file_00001:
-  id: 1
-  inventory_file_name: MyString
-  inventory_file_size: 1
+  id: e2337e7a-96f7-451f-8d0c-140e4d68dbcb
   user_id: 1
-  inventory_content_type: text/csv
 inventory_file_00002:
-  id: 2
-  inventory_file_name: MyString
-  inventory_file_size: 1
+  id: 728d3a0b-a32c-4ada-aa08-747084e2ea18
   user_id: 1
-  inventory_content_type: text/csv
 inventory_file_00003:
-  id: 3
-  inventory_file_name: MyString
-  inventory_file_size: 1
+  id: 953c550f-d33c-4748-b066-6a02a5c82bac
   user_id: 1
-  inventory_content_type: text/csv
 
 # == Schema Information
 #
@@ -25,15 +16,11 @@ inventory_file_00003:
 #
 #  id                     :bigint(8)        not null, primary key
 #  filename               :string
-#  content_type           :string
 #  size                   :integer
 #  user_id                :bigint(8)
 #  note                   :text
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  inventory_file_name    :string
-#  inventory_content_type :string
-#  inventory_file_size    :integer
 #  inventory_updated_at   :datetime
 #  inventory_fingerprint  :string
 #

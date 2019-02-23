@@ -3,13 +3,13 @@
 inventory_00001:
   id: 1
   item_id: 2611ea22-e022-4cab-9549-9979eb8eced7
-  inventory_file_id: 1
+  inventory_file_id: e2337e7a-96f7-451f-8d0c-140e4d68dbcb
   note: MyText
 
 inventory_00002:
   id: 2
   item_id: ec917c6a-97e1-4ec7-9f4e-d827bb093249
-  inventory_file_id: 1
+  inventory_file_id: e2337e7a-96f7-451f-8d0c-140e4d68dbcb
   note: MyText
 
 # == Schema Information
