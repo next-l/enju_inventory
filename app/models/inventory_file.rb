@@ -23,14 +23,9 @@ end
 #
 # Table name: inventory_files
 #
-#  id                     :uuid             not null, primary key
-#  user_id                :bigint(8)        not null
-#  note                   :text
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  inventory_file_name    :string
-#  inventory_content_type :string
-#  inventory_file_size    :integer
-#  inventory_updated_at   :datetime
-#  inventory_fingerprint  :string
+#  id         :uuid             not null, primary key
+#  user_id    :bigint(8)        not null
+#  note       :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #

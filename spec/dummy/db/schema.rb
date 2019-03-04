@@ -599,11 +599,6 @@ ActiveRecord::Schema.define(version: 2019_02_08_135957) do
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "inventory_file_name"
-    t.string "inventory_content_type"
-    t.integer "inventory_file_size"
-    t.datetime "inventory_updated_at"
-    t.string "inventory_fingerprint"
     t.index ["user_id"], name: "index_inventory_files_on_user_id"
   end
 
