@@ -20,8 +20,8 @@ gem 'enju_subject', github: 'next-l/enju_subject'
 gem 'enju_circulation', github: 'next-l/enju_circulation'
 gem 'enju_message', github: 'next-l/enju_message'
 gem 'enju_event', github: 'next-l/enju_event'
-gem 'rspec_junit_formatter'
+gem 'rspec_junit_formatter', group: :test
 
 # To use debugger
 # gem 'debugger'
-gem 'rails-controller-testing'
+gem 'rails-controller-testing', group: :test
