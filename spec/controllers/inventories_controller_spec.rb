@@ -10,7 +10,7 @@ describe InventoriesController do
       it "assigns all inventories as @inventories" do
         get :index
         expect(assigns(:inventories)).to eq(Inventory.page(1))
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
@@ -20,7 +20,7 @@ describe InventoriesController do
       it "assigns all inventories as @inventories" do
         get :index
         expect(assigns(:inventories)).to eq(Inventory.page(1))
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
@@ -50,7 +50,7 @@ describe InventoriesController do
       it "assigns the requested inventory as @inventory" do
         get :show, params: { id: 1 }
         expect(assigns(:inventory)).to eq(Inventory.find(1))
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
@@ -60,7 +60,7 @@ describe InventoriesController do
       it "assigns the requested inventory as @inventory" do
         get :show, params: { id: 1 }
         expect(assigns(:inventory)).to eq(Inventory.find(1))
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
