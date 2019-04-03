@@ -17,6 +17,7 @@ after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 services:
   - redis-server
+  - postgresql
 env:
   - DB=postgresql
 notifications:
@@ -29,3 +30,6 @@ addons:
     packages:
     - postgresql-10
     - postgresql-client-10
+jdk:
+  - openjdk8
+dist: xenial
