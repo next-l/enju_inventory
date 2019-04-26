@@ -1,13 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 inventory_file_00001:
-  id: e2337e7a-96f7-451f-8d0c-140e4d68dbcb
+  id: 1
   user_id: 1
 inventory_file_00002:
-  id: 728d3a0b-a32c-4ada-aa08-747084e2ea18
+  id: 2
   user_id: 1
 inventory_file_00003:
-  id: 953c550f-d33c-4748-b066-6a02a5c82bac
+  id: 3
   user_id: 1
 
 # == Schema Information
