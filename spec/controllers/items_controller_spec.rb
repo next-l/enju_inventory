@@ -16,10 +16,10 @@ describe ItemsController do
       login_fixture_librarian
 
       it 'should not get index with inventory_file_id' do
-        get :index, params: { inventory_file_id: inventory_files(:inventory_file_00001).id }
+        get :index, params: { inventory_file_id: 1 }
         expect(response).to be_successful
-        assigns(:inventory_file).should eq inventory_files(:inventory_file_00001)
-        expect(assigns(:items)).to eq Item.inventory_items(assigns(:inventory_file), 'not_on_shelf').order('items.created_at').page(1)
+        assigns(:inventory_file).should eq InventoryFile.find(1)
+        expect(assigns(:items)).to eq Item.inventory_items(assigns(:inventory_file), 'not_on_shelf').order('items.id').page(1)
       end
     end
 
@@ -27,7 +27,7 @@ describe ItemsController do
       login_fixture_user
 
       it 'should not get index with inventory_file_id' do
-        get :index, params: { inventory_file_id: inventory_files(:inventory_file_00001).id }
+        get :index, params: { inventory_file_id: 1 }
         expect(response).to be_forbidden
       end
     end
@@ -35,7 +35,7 @@ describe ItemsController do
     describe 'When not logged in' do
 
       it 'should not get index with inventory_file_id' do
-        get :index, params: { inventory_file_id: inventory_files(:inventory_file_00001).id }
+        get :index, params: { inventory_file_id: 1 }
         expect(response).to redirect_to new_user_session_url
         assigns(:inventory_file).should_not be_nil
       end

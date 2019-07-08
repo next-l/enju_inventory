@@ -17,9 +17,12 @@ gem 'enju_leaf', github: 'next-l/enju_leaf'
 gem 'enju_library', github: 'next-l/enju_library'
 gem 'enju_biblio', github: 'next-l/enju_biblio'
 gem 'enju_subject', github: 'next-l/enju_subject'
+gem 'enju_manifestation_viewer', github: 'next-l/enju_manifestation_viewer'
 gem 'enju_circulation', github: 'next-l/enju_circulation'
 gem 'enju_message', github: 'next-l/enju_message'
 gem 'enju_event', github: 'next-l/enju_event'
+gem 'paper_trail'
+gem 'jbuilder'
 gem 'rspec_junit_formatter', group: :test
 
 # To use debugger
