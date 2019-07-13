@@ -11,7 +11,6 @@ gemspec
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 gem 'jquery-rails'
-gem 'json_translate'
 gem 'enju_seed', github: 'next-l/enju_seed'
 gem 'enju_leaf', github: 'next-l/enju_leaf'
 gem 'enju_library', github: 'next-l/enju_library'
@@ -23,8 +22,10 @@ gem 'enju_message', github: 'next-l/enju_message'
 gem 'enju_event', github: 'next-l/enju_event'
 gem 'paper_trail'
 gem 'jbuilder'
-gem 'rspec_junit_formatter', group: :test
+group :test do
+  gem 'rails-controller-testing'
+  gem 'rspec_junit_formatter'
+end
 
 # To use debugger
 # gem 'debugger'
-gem 'rails-controller-testing', group: :test
