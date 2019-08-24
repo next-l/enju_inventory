@@ -1,4 +1,4 @@
-class CreateReserves < ActiveRecord::Migration[4.2]
+class CreateReserves < ActiveRecord::Migration[5.2]
   def self.up
     create_table :reserves do |t|
       t.references :user, index: true, foreign_key: true, null: false

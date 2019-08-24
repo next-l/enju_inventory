@@ -1,4 +1,4 @@
-class CreateUseRestrictions < ActiveRecord::Migration[4.2]
+class CreateUseRestrictions < ActiveRecord::Migration[5.2]
   def self.up
     create_table :use_restrictions do |t|
       t.string :name, null: false

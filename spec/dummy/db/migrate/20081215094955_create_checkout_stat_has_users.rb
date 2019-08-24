@@ -1,4 +1,4 @@
-class CreateCheckoutStatHasUsers < ActiveRecord::Migration[4.2]
+class CreateCheckoutStatHasUsers < ActiveRecord::Migration[5.2]
   def self.up
     create_table :checkout_stat_has_users do |t|
       t.references :user_checkout_stat, index: true, foreign_key: true, null: false

@@ -1,4 +1,4 @@
-class CreateReserveStatHasManifestations < ActiveRecord::Migration[4.2]
+class CreateReserveStatHasManifestations < ActiveRecord::Migration[5.2]
   def self.up
     create_table :reserve_stat_has_manifestations do |t|
       t.references :manifestation_reserve_stat, index: false, null: false

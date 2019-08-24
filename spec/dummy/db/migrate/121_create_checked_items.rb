@@ -1,4 +1,4 @@
-class CreateCheckedItems < ActiveRecord::Migration[4.2]
+class CreateCheckedItems < ActiveRecord::Migration[5.2]
   def self.up
     create_table :checked_items do |t|
       t.references :item, index: true, foreign_key: true, null: false

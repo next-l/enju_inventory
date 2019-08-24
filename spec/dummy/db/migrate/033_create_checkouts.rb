@@ -1,4 +1,4 @@
-class CreateCheckouts < ActiveRecord::Migration[4.2]
+class CreateCheckouts < ActiveRecord::Migration[5.2]
   def self.up
     create_table :checkouts do |t|
       t.references :user, index: true, foreign_key: true
