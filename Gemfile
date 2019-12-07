@@ -20,3 +20,7 @@ end
 
 # To use debugger
 # gem 'debugger'
+
+gem 'enju_leaf', github: 'next-l/enju_leaf', branch: '2.x'
+gem 'enju_library', github: 'next-l/enju_library', branch: '2.x'
+gem 'enju_biblio', github: 'next-l/enju_biblio', branch: '2.x'
