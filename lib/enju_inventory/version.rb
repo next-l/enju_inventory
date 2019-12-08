@@ -1,3 +1,3 @@
 module EnjuInventory
-  VERSION = "0.3.1".version
+  VERSION = "0.3.1".freeze
 end
