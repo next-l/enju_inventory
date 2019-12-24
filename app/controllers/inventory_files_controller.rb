@@ -16,22 +16,11 @@ class InventoryFilesController < ApplicationController
   # GET /inventory_files/1
   # GET /inventory_files/1.json
   def show
-    if @inventory_file.inventory.path
-      unless ENV['ENJU_STORAGE'] == 's3'
-        file = @inventory_file.inventory.path
-      end
-    end
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @inventory_file }
       format.download {
-        if ENV['ENJU_STORAGE'] == 's3'
-          send_data Faraday.get(@inventory_file.inventory.expiring_url).body.force_encoding('UTF-8'),
-            filename: File.basename(@inventory_file.inventory_file_name), type: 'application/octet-stream'
-        else
-          send_file file, filename: @inventory_file.inventory_file_name, type: 'application/octet-stream'
-        end
+        send_data @inventory_file.inventory.download, filename: @inventory_file.inventory.filename.to_s, type: @inventory_file.inventory.content_type, disposition: disposition
       }
     end
   end
