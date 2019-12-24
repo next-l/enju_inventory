@@ -11,7 +11,6 @@ gemspec
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 gem 'rails', '~> 5.2'
-gem 'sprockets', '~> 3.7'
 gem 'jbuilder'
 group :test do
   gem 'rails-controller-testing'
