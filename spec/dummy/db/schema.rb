@@ -2,15 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
-# be faster and is potentially less error prone than running all of your
-# migrations from scratch. Old migrations may fail to apply correctly if those
-# migrations use external dependencies or application code.
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_18_075628) do
+ActiveRecord::Schema.define(version: 2019_12_24_091957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -184,7 +184,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
 
   create_table "baskets", force: :cascade do |t|
     t.bigint "user_id"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "lock_version", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
     t.text "name", null: false
     t.string "zip_code"
     t.text "address"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.string "telephone_number"
     t.string "fax_number"
     t.string "url"
@@ -207,7 +207,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
   create_table "budget_types", force: :cascade do |t|
     t.string "name"
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -472,8 +472,12 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "item_identifier", null: false
+    t.string "current_shelf_name", null: false
+    t.index ["current_shelf_name"], name: "index_inventories_on_current_shelf_name"
     t.index ["inventory_file_id"], name: "index_inventories_on_inventory_file_id"
     t.index ["item_id"], name: "index_inventories_on_item_id"
+    t.index ["item_identifier"], name: "index_inventories_on_item_identifier"
   end
 
   create_table "inventory_files", force: :cascade do |t|
@@ -595,7 +599,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
     t.string "telephone_number_1"
     t.string "telephone_number_2"
     t.string "fax_number"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "call_number_rows", default: 1, null: false
     t.string "call_number_delimiter", default: "|", null: false
     t.bigint "library_group_id", null: false
@@ -619,7 +623,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
     t.string "short_name", null: false
     t.text "my_networks"
     t.text "old_login_banner"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "country_id"
     t.integer "position"
     t.datetime "created_at", null: false
@@ -631,14 +635,14 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
     t.integer "max_number_of_results", default: 500
     t.boolean "family_name_first", default: true
     t.integer "pub_year_facet_range_interval", default: 10
-    t.bigint "user_id"
     t.boolean "csv_charset_conversion", default: false, null: false
     t.text "header_logo_meta"
     t.jsonb "display_name_translations", default: {}, null: false
     t.jsonb "login_banner_translations", default: {}, null: false
     t.jsonb "footer_banner_translations", default: {}, null: false
+    t.string "email"
+    t.index ["email"], name: "index_library_groups_on_email"
     t.index ["short_name"], name: "index_library_groups_on_short_name"
-    t.index ["user_id"], name: "index_library_groups_on_user_id"
   end
 
   create_table "licenses", force: :cascade do |t|
@@ -937,16 +941,14 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
     t.index ["manifestation_id"], name: "index_produces_on_manifestation_id"
   end
 
-  create_table "profiles", force: :cascade do |t|
+  create_table "profiles", comment: "プロフィール", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "user_group_id"
-    t.bigint "library_id"
-    t.string "locale"
-    t.string "user_number"
-    t.text "full_name"
-    t.text "note"
-    t.text "keyword_list"
-    t.bigint "required_role_id"
+    t.string "locale", comment: "ロケール"
+    t.string "user_number", comment: "利用者番号"
+    t.text "full_name", comment: "氏名"
+    t.text "note", comment: "備考"
+    t.text "keyword_list", comment: "キーワードリスト"
+    t.bigint "required_role_id", comment: "参照に必要な権限"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "checkout_icalendar_token"
@@ -955,8 +957,11 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
     t.text "full_name_transcription"
     t.datetime "date_of_birth"
     t.jsonb "full_name_translations", default: {}, null: false
+    t.bigint "user_group_id"
+    t.bigint "library_id"
     t.index ["checkout_icalendar_token"], name: "index_profiles_on_checkout_icalendar_token", unique: true
     t.index ["library_id"], name: "index_profiles_on_library_id"
+    t.index ["required_role_id"], name: "index_profiles_on_required_role_id"
     t.index ["user_group_id"], name: "index_profiles_on_user_group_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
     t.index ["user_number"], name: "index_profiles_on_user_number", unique: true
@@ -986,7 +991,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
   create_table "request_status_types", force: :cascade do |t|
     t.string "name", null: false
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -996,7 +1001,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
   create_table "request_types", force: :cascade do |t|
     t.string "name", null: false
     t.text "display_name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -1130,14 +1135,13 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
     t.index ["reserve_id"], name: "index_retains_on_reserve_id"
   end
 
-  create_table "roles", force: :cascade do |t|
+  create_table "roles", comment: "権限", force: :cascade do |t|
     t.string "name", null: false
     t.string "display_name"
-    t.text "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer "score", default: 0, null: false
+    t.text "note", comment: "備考"
     t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.jsonb "display_name_translations", default: {}, null: false
   end
 
@@ -1148,7 +1152,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
     t.text "http_method", null: false
     t.text "query_param", null: false
     t.text "additional_param"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -1196,7 +1200,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
 
   create_table "shelves", force: :cascade do |t|
     t.string "name", null: false
-    t.text "note"
+    t.text "note", comment: "備考"
     t.bigint "library_id", null: false
     t.integer "items_count", default: 0, null: false
     t.integer "position"
@@ -1220,7 +1224,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.text "title", null: false
-    t.text "note"
+    t.text "note", comment: "備考"
     t.bigint "user_id"
     t.bigint "order_list_id"
     t.integer "subscribes_count", default: 0, null: false
@@ -1266,7 +1270,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
 
   create_table "user_export_file_transitions", force: :cascade do |t|
     t.string "to_state"
-    t.text "metadata", default: "{}"
+    t.jsonb "metadata", default: {}
     t.integer "sort_key"
     t.bigint "user_export_file_id"
     t.datetime "created_at", null: false
@@ -1307,7 +1311,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
 
   create_table "user_groups", force: :cascade do |t|
     t.string "name"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -1330,7 +1334,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
 
   create_table "user_import_file_transitions", force: :cascade do |t|
     t.string "to_state"
-    t.text "metadata", default: "{}"
+    t.jsonb "metadata", default: {}
     t.integer "sort_key"
     t.bigint "user_import_file_id"
     t.datetime "created_at", null: false
@@ -1343,7 +1347,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
 
   create_table "user_import_files", force: :cascade do |t|
     t.bigint "user_id"
-    t.text "note"
+    t.text "note", comment: "備考"
     t.datetime "executed_at"
     t.string "user_import_fingerprint"
     t.string "edit_mode"
@@ -1413,7 +1417,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
     t.string "unlock_token"
     t.datetime "locked_at"
     t.datetime "confirmed_at"
-    t.bigint "profile_id"
+    t.bigint "profile_id", comment: "プロフィールID"
     t.index ["email"], name: "index_users_on_email"
     t.index ["profile_id"], name: "index_users_on_profile_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -1464,12 +1468,14 @@ ActiveRecord::Schema.define(version: 2019_08_18_075628) do
   add_foreign_key "item_has_use_restrictions", "use_restrictions"
   add_foreign_key "items", "manifestations"
   add_foreign_key "libraries", "library_groups"
-  add_foreign_key "library_groups", "users"
   add_foreign_key "manifestation_checkout_stats", "users"
   add_foreign_key "manifestation_reserve_stats", "users"
   add_foreign_key "periodical_and_manifestations", "manifestations"
   add_foreign_key "periodical_and_manifestations", "periodicals"
   add_foreign_key "periodicals", "frequencies"
+  add_foreign_key "profiles", "libraries"
+  add_foreign_key "profiles", "roles", column: "required_role_id"
+  add_foreign_key "profiles", "user_groups"
   add_foreign_key "profiles", "users"
   add_foreign_key "reserve_stat_has_manifestations", "manifestations"
   add_foreign_key "reserve_stat_has_users", "user_reserve_stats"

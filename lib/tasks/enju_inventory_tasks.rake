@@ -1,4 +1,5 @@
-# desc "Explaining what the task does"
-# task :enju_inventory do
-#   # Task goes here
-# end
+namespace :enju_inventory do
+  desc "Import inventory result"
+  task import: :environment do
+  end
+end

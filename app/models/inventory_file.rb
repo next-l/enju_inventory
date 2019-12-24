@@ -9,14 +9,31 @@ class InventoryFile < ActiveRecord::Base
 
   def import
     inventory.download.split.each do |row|
-      item = Item.find_by(item_identifier: row.to_s.strip)
-      if item
-        unless self.items.where(id: item.id).select('items.id').first
-          self.items << item
-        end
-      end
+      identifier = row.to_s.strip
+      item = Item.find_by(item_identifier: identifier)
+      Inventory.create(item_identifier: identifier, item: item, inventory_file: self)
     end
-    true
+  end
+
+  def export(col_sep: "\t")
+    file = Tempfile.create do |f|
+      inventories.each do |inventory|
+        f.write inventory.to_hash.values.to_csv(col_sep)
+      end
+
+      f.rewind
+      f.read
+    end
+
+    file
+  end
+
+  def missing_items
+    Item.where(Inventory.where('items.id = inventories.item_id AND inventories.inventory_file_id = ?', id).exists.not)
+  end
+
+  def found_items
+    items
   end
 end
 

@@ -3,23 +3,37 @@
 inventory_00001:
   id: 1
   item_id: 1
+  item_identifier: 000001
   inventory_file_id: 1
+  current_shelf_name: first_shelf
   note: MyText
 
 inventory_00002:
   id: 2
   item_id: 2
+  item_identifier: 000002
   inventory_file_id: 1
+  current_shelf_name: first_shelf
+  note: MyText
+
+inventory_00003:
+  id: 3
+  item_id: 2
+  item_identifier: 000003
+  inventory_file_id: 2
+  current_shelf_name: second_shelf
   note: MyText
 
 # == Schema Information
 #
 # Table name: inventories
 #
-#  id                :bigint           not null, primary key
-#  item_id           :bigint
-#  inventory_file_id :bigint
-#  note              :text
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
+#  id                 :bigint           not null, primary key
+#  item_id            :bigint
+#  inventory_file_id  :bigint
+#  note               :text
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  item_identifier    :string           not null
+#  current_shelf_name :string           not null
 #
