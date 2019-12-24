@@ -1484,7 +1484,7 @@ ActiveRecord::Schema.define(version: 2019_12_24_091957) do
   add_foreign_key "reserves", "users"
   add_foreign_key "resource_import_files", "users"
   add_foreign_key "retains", "items"
-  add_foreign_key "retains", "reserves", column: "reserve_id"
+  add_foreign_key "retains", "reserves"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "user_checkout_stats", "users"
   add_foreign_key "user_export_files", "users"
