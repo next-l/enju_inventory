@@ -1,8 +1,8 @@
-class Inventory < ActiveRecord::Base
+class Inventory < ApplicationRecord
   belongs_to :item, optional: true
   belongs_to :inventory_file
 
-  validates :item_identifier, :current_shelf_name, :inventory_file, presence: true
+  validates :item_identifier, :current_shelf_name, presence: true
   validates :item_id, :item_identifier, uniqueness: {scope: :inventory_file_id}
 
   paginates_per 10

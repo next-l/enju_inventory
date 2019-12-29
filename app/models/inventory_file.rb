@@ -1,4 +1,4 @@
-class InventoryFile < ActiveRecord::Base
+class InventoryFile < ApplicationRecord
   has_many :inventories, dependent: :destroy
   has_many :items, through: :inventories
   belongs_to :user
@@ -21,10 +21,19 @@ class InventoryFile < ActiveRecord::Base
   paginates_per 10
 
   def import
-    inventory.download.split.each do |row|
-      identifier = row.to_s.strip
-      item = Item.find_by(item_identifier: identifier)
-      Inventory.create(item_identifier: identifier, item: item, inventory_file: self)
+    self.reload
+    file = File.open(self.inventory.path)
+    reader = file.read
+    reader.split.each do |row|
+      item = Item.where(item_identifier: row.to_s.strip).first
+      if item
+        unless self.items.where(id: item.id).select('items.id').first
+          Inventory.create(
+            inventory_file: self,
+            item: item
+          )
+        end
+      end
     end
   end
 
@@ -39,6 +48,14 @@ class InventoryFile < ActiveRecord::Base
     end
 
     file
+  end
+
+  def missing_items
+    Item.where(Inventory.where('items.id = inventories.item_id AND inventories.inventory_file_id = ?', id).exists.not)
+  end
+
+  def found_items
+    items
   end
 
   def missing_items
