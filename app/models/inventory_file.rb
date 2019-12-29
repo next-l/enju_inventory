@@ -3,9 +3,6 @@ class InventoryFile < ActiveRecord::Base
   has_many :items, through: :inventories
   belongs_to :user
 
-<<<<<<< HEAD
-  has_one_attached :inventory
-=======
   if ENV['ENJU_STORAGE'] == 's3'
     has_attached_file :inventory, storage: :s3,
                                   s3_credentials: {
@@ -20,7 +17,6 @@ class InventoryFile < ActiveRecord::Base
   end
   validates_attachment_content_type :inventory, content_type: ['text/csv', 'text/plain', 'text/tab-separated-values']
   validates_attachment_presence :inventory
->>>>>>> 08614b0... clean up validations
 
   paginates_per 10
 
