@@ -1,4 +1,4 @@
-class InventoryFile < ActiveRecord::Base
+class InventoryFile < ApplicationRecord
   has_many :inventories, dependent: :destroy
   has_many :items, through: :inventories
   belongs_to :user
@@ -28,12 +28,23 @@ class InventoryFile < ActiveRecord::Base
       item = Item.where(item_identifier: row.to_s.strip).first
       if item
         unless self.items.where(id: item.id).select('items.id').first
-          self.items << item
+          Inventory.create(
+            inventory_file: self,
+            item: item
+          )
         end
       end
     end
     file.close
     true
+  end
+
+  def missing_items
+    Item.where(Inventory.where('items.id = inventories.item_id AND inventories.inventory_file_id = ?', id).exists.not)
+  end
+
+  def found_items
+    items
   end
 end
 
