@@ -12,6 +12,7 @@ gemspec
 # your gem to rubygems.org.
 gem 'jquery-rails'
 gem 'rails-i18n'
+gem 'rails', '~> 5.2'
 
 # To use debugger
 # gem 'debugger'
