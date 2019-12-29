@@ -12,6 +12,10 @@ describe InventoryFile do
   it "should be imported" do
     expect(@file.import).to be_truthy
   end
+
+  it "should export results" do
+    expect(@file.export).to be_truthy
+  end
 end
 
 # == Schema Information
