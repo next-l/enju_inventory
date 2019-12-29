@@ -2,7 +2,6 @@ class InventoryFile < ActiveRecord::Base
   has_many :inventories, dependent: :destroy
   has_many :items, through: :inventories
   belongs_to :user
-  validates_presence_of :user
 
   if ENV['ENJU_STORAGE'] == 's3'
     has_attached_file :inventory, storage: :s3,
