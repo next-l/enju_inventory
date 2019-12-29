@@ -13,6 +13,7 @@ gemspec
 gem 'jquery-rails'
 gem 'rails-i18n'
 gem 'rails', '~> 5.2'
+gem 'jbuilder'
 
 # To use debugger
 # gem 'debugger'
