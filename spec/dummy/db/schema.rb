@@ -369,6 +369,15 @@ ActiveRecord::Schema.define(version: 2019_12_24_091957) do
     t.index ["work_id"], name: "index_creates_on_work_id"
   end
 
+  create_table "custom_properties", force: :cascade do |t|
+    t.integer "resource_id", null: false
+    t.string "resource_type", null: false
+    t.text "label", null: false
+    t.text "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "demands", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "item_id"
