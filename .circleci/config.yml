@@ -36,6 +36,10 @@ jobs:
           name: install dependencies
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - run:
+          command: sudo apt install -y openjdk-8-jre-headless
+      - run:
+          command: sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 
       - save_cache:
           paths:
