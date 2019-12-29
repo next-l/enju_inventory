@@ -3,7 +3,24 @@ class InventoryFile < ActiveRecord::Base
   has_many :items, through: :inventories
   belongs_to :user
 
+<<<<<<< HEAD
   has_one_attached :inventory
+=======
+  if ENV['ENJU_STORAGE'] == 's3'
+    has_attached_file :inventory, storage: :s3,
+                                  s3_credentials: {
+        access_key: ENV['AWS_ACCESS_KEY_ID'],
+        secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+        bucket: ENV['S3_BUCKET_NAME']
+      },
+                                  s3_permissions: :private
+  else
+    has_attached_file :inventory,
+      path: ":rails_root/private/system/:class/:attachment/:id_partition/:style/:filename"
+  end
+  validates_attachment_content_type :inventory, content_type: ['text/csv', 'text/plain', 'text/tab-separated-values']
+  validates_attachment_presence :inventory
+>>>>>>> 08614b0... clean up validations
 
   paginates_per 10
 
