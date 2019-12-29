@@ -39,6 +39,19 @@ class InventoryFile < ApplicationRecord
     true
   end
 
+  def export(col_sep: "\t")
+    file = Tempfile.create do |f|
+      inventories.each do |inventory|
+        f.write inventory.to_hash.values.to_csv(col_sep)
+      end
+
+      f.rewind
+      f.read
+    end
+
+    file
+  end
+
   def missing_items
     Item.where(Inventory.where('items.id = inventories.item_id AND inventories.inventory_file_id = ?', id).exists.not)
   end
