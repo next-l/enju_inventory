@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_19_122214) do
+ActiveRecord::Schema.define(version: 2019_12_24_091957) do
 
   create_table "accepts", force: :cascade do |t|
     t.integer "basket_id"
@@ -209,6 +209,15 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
     t.datetime "attachment_updated_at"
   end
 
+  create_table "circulation_statuses", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "display_name"
+    t.text "note"
+    t.integer "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "colors", force: :cascade do |t|
     t.integer "library_group_id"
     t.string "property"
@@ -368,8 +377,12 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
     t.text "note"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "item_identifier"
+    t.string "current_shelf_name"
+    t.index ["current_shelf_name"], name: "index_inventories_on_current_shelf_name"
     t.index ["inventory_file_id"], name: "index_inventories_on_inventory_file_id"
     t.index ["item_id"], name: "index_inventories_on_item_id"
+    t.index ["item_identifier"], name: "index_inventories_on_item_identifier"
   end
 
   create_table "inventory_files", force: :cascade do |t|
@@ -405,6 +418,8 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
     t.datetime "acquired_at"
     t.integer "bookstore_id"
     t.integer "budget_type_id"
+    t.integer "circulation_status_id", default: 5, null: false
+    t.integer "checkout_type_id", default: 1, null: false
     t.string "binding_item_identifier"
     t.string "binding_call_number"
     t.datetime "binded_at"
@@ -412,6 +427,8 @@ ActiveRecord::Schema.define(version: 2019_12_19_122214) do
     t.text "memo"
     t.index ["binding_item_identifier"], name: "index_items_on_binding_item_identifier"
     t.index ["bookstore_id"], name: "index_items_on_bookstore_id"
+    t.index ["checkout_type_id"], name: "index_items_on_checkout_type_id"
+    t.index ["circulation_status_id"], name: "index_items_on_circulation_status_id"
     t.index ["item_identifier"], name: "index_items_on_item_identifier"
     t.index ["manifestation_id"], name: "index_items_on_manifestation_id"
     t.index ["required_role_id"], name: "index_items_on_required_role_id"
