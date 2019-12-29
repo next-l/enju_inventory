@@ -16,7 +16,7 @@ class InventoryFile < ApplicationRecord
       path: ":rails_root/private/system/:class/:attachment/:id_partition/:style/:filename"
   end
   validates_attachment_content_type :inventory, content_type: ['text/csv', 'text/plain', 'text/tab-separated-values']
-  validates_attachment_presence :inventory
+  validates_attachment_presence :inventory, on: :create
 
   paginates_per 10
 
@@ -35,27 +35,8 @@ class InventoryFile < ApplicationRecord
         end
       end
     end
-  end
-
-  def export(col_sep: "\t")
-    file = Tempfile.create do |f|
-      inventories.each do |inventory|
-        f.write inventory.to_hash.values.to_csv(col_sep)
-      end
-
-      f.rewind
-      f.read
-    end
-
-    file
-  end
-
-  def missing_items
-    Item.where(Inventory.where('items.id = inventories.item_id AND inventories.inventory_file_id = ?', id).exists.not)
-  end
-
-  def found_items
-    items
+    file.close
+    true
   end
 
   def missing_items
@@ -71,11 +52,14 @@ end
 #
 # Table name: inventory_files
 #
-#  id                     :bigint           not null, primary key
-#  user_id                :bigint
+#  id                     :integer          not null, primary key
+#  filename               :string
+#  content_type           :string
+#  size                   :integer
+#  user_id                :integer
 #  note                   :text
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
+#  created_at             :datetime
+#  updated_at             :datetime
 #  inventory_file_name    :string
 #  inventory_content_type :string
 #  inventory_file_size    :integer

@@ -46,9 +46,8 @@ describe InventoryFilesController do
       login_fixture_admin
 
       it "assigns the requested inventory_file as @inventory_file" do
-        get :show, params: { id: inventory_files(:inventory_file_00001) }
-        expect(assigns(:inventory_file)).to eq(InventoryFile.find(inventory_files(:inventory_file_00001).id))
-        expect(response).to be_successful
+        get :show, params: { id: 1 }
+        expect(assigns(:inventory_file)).to eq(InventoryFile.find(1))
       end
     end
 
@@ -56,9 +55,8 @@ describe InventoryFilesController do
       login_fixture_librarian
 
       it "assigns the requested inventory_file as @inventory_file" do
-        get :show, params: { id: inventory_files(:inventory_file_00001) }
-        expect(assigns(:inventory_file)).to eq(InventoryFile.find(inventory_files(:inventory_file_00001).id))
-        expect(response).to be_successful
+        get :show, params: { id: 1 }
+        expect(assigns(:inventory_file)).to eq(InventoryFile.find(1))
       end
     end
 
@@ -66,16 +64,15 @@ describe InventoryFilesController do
       login_fixture_user
 
       it "assigns the requested inventory_file as @inventory_file" do
-        get :show, params: { id: inventory_files(:inventory_file_00001) }
-        expect(assigns(:inventory_file)).to eq(InventoryFile.find(inventory_files(:inventory_file_00001).id))
-        expect(response).to be_forbidden
+        get :show, params: { id: 1 }
+        expect(assigns(:inventory_file)).to eq(InventoryFile.find(1))
       end
     end
 
     describe "When not logged in" do
       it "assigns the requested inventory_file as @inventory_file" do
-        get :show, params: { id: inventory_files(:inventory_file_00001) }
-        expect(assigns(:inventory_file)).to eq(InventoryFile.find(inventory_files(:inventory_file_00001).id))
+        get :show, params: { id: 1 }
+        expect(assigns(:inventory_file)).to eq(InventoryFile.find(1))
         expect(response).to redirect_to(new_user_session_url)
       end
     end
