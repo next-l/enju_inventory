@@ -21,6 +21,7 @@ class InventoryFilesController < ApplicationController
         file = @inventory_file.inventory.path
       end
     end
+    @inventories = @inventory_file.inventories.page(params[:page])
 
     respond_to do |format|
       format.html # show.html.erb
