@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_24_091957) do
+ActiveRecord::Schema.define(version: 2019_12_30_082846) do
 
   create_table "accepts", force: :cascade do |t|
     t.integer "basket_id"
@@ -398,6 +398,8 @@ ActiveRecord::Schema.define(version: 2019_12_24_091957) do
     t.integer "inventory_file_size"
     t.datetime "inventory_updated_at"
     t.string "inventory_fingerprint"
+    t.integer "shelf_id"
+    t.index ["shelf_id"], name: "index_inventory_files_on_shelf_id"
     t.index ["user_id"], name: "index_inventory_files_on_user_id"
   end
 

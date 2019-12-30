@@ -9,10 +9,12 @@ end
 #
 # Table name: inventories
 #
-#  id                :integer          not null, primary key
-#  item_id           :integer
-#  inventory_file_id :integer
-#  note              :text
-#  created_at        :datetime
-#  updated_at        :datetime
+#  id                 :integer          not null, primary key
+#  item_id            :integer
+#  inventory_file_id  :integer
+#  note               :text
+#  created_at         :datetime
+#  updated_at         :datetime
+#  item_identifier    :string
+#  current_shelf_name :string
 #

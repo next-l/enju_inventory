@@ -38,12 +38,12 @@ end
 #
 # Table name: inventories
 #
-#  id                 :bigint           not null, primary key
-#  item_id            :bigint
-#  inventory_file_id  :bigint
+#  id                 :integer          not null, primary key
+#  item_id            :integer
+#  inventory_file_id  :integer
 #  note               :text
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  item_identifier    :string           not null
-#  current_shelf_name :string           not null
+#  created_at         :datetime
+#  updated_at         :datetime
+#  item_identifier    :string
+#  current_shelf_name :string
 #

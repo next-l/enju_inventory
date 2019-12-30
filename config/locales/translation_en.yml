@@ -16,6 +16,7 @@ en:
         inventory_file_size: Size
         inventory_fingerprint: File hash
         note: Note
+        shelf: Shelf
 
   inventory_file:
     not_in_catalog: "Not in catalog"

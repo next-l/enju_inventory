@@ -2,6 +2,7 @@ class InventoryFile < ApplicationRecord
   has_many :inventories, dependent: :destroy
   has_many :items, through: :inventories
   belongs_to :user
+  belongs_to :shelf
 
   if ENV['ENJU_STORAGE'] == 's3'
     has_attached_file :inventory, storage: :s3,
@@ -78,4 +79,5 @@ end
 #  inventory_file_size    :integer
 #  inventory_updated_at   :datetime
 #  inventory_fingerprint  :string
+#  shelf_id               :integer
 #

@@ -4,9 +4,9 @@ describe InventoryFile do
   fixtures :users
 
   before(:each) do
-    @file = InventoryFile.new inventory: File.new("#{Rails.root.to_s}/../../examples/inventory_file_sample.tsv")
+    @file = InventoryFile.new(inventory: File.new("#{Rails.root.to_s}/../../examples/inventory_file_sample.tsv"), shelf: Shelf.find_by(name: 'first_shelf'))
     @file.user = users(:admin)
-    @file.save
+    @file.save!
   end
 
   it "should be imported" do
@@ -35,4 +35,5 @@ end
 #  inventory_file_size    :integer
 #  inventory_updated_at   :datetime
 #  inventory_fingerprint  :string
+#  shelf_id               :integer
 #
