@@ -18,6 +18,7 @@ class InventoryFile < ApplicationRecord
   end
   validates_attachment_content_type :inventory, content_type: ['text/csv', 'text/plain', 'text/tab-separated-values']
   validates_attachment_presence :inventory, on: :create
+  attr_accessor :library_id
 
   paginates_per 10
 
