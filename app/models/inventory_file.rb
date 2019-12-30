@@ -2,6 +2,7 @@ class InventoryFile < ActiveRecord::Base
   has_many :inventories, dependent: :destroy
   has_many :items, through: :inventories
   belongs_to :user
+  belongs_to :shelf
 
   has_one_attached :inventory
 
@@ -51,4 +52,5 @@ end
 #  inventory_file_size    :integer
 #  inventory_updated_at   :datetime
 #  inventory_fingerprint  :string
+#  shelf_id               :bigint           not null
 #

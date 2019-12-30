@@ -31,4 +31,5 @@ end
 #  inventory_file_size    :integer
 #  inventory_updated_at   :datetime
 #  inventory_fingerprint  :string
+#  shelf_id               :bigint           not null
 #

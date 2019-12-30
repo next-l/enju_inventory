@@ -16,6 +16,7 @@ ja:
         inventory_file_size: ファイルサイズ
         file_hash: ファイルのハッシュ
         note: 注記
+        shelf: 書棚
 
   inventory_file:
     not_in_catalog: "目録に存在しない資料"

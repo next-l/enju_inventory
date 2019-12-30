@@ -1,6 +1,7 @@
 class InventoryFilesController < ApplicationController
   before_action :set_inventory_file, only: [:show, :edit, :update, :destroy]
   before_action :check_policy, only: [:index, :new, :create]
+  before_action :prepare_options, only: [:new, :edit]
 
   # GET /inventory_files
   # GET /inventory_files.json
@@ -55,6 +56,7 @@ class InventoryFilesController < ApplicationController
         format.html { redirect_to(@inventory_file) }
         format.json { render json: @inventory_file, status: :created, location: @inventory_file }
       else
+        prepare_options
         format.html { render action: "new" }
         format.json { render json: @inventory_file.errors, status: :unprocessable_entity }
       end
@@ -70,6 +72,7 @@ class InventoryFilesController < ApplicationController
         format.html { redirect_to(@inventory_file) }
         format.json { head :no_content }
       else
+        prepare_options
         format.html { render action: "edit" }
         format.json { render json: @inventory_file.errors, status: :unprocessable_entity }
       end
@@ -97,7 +100,11 @@ class InventoryFilesController < ApplicationController
     authorize InventoryFile
   end
 
+  def prepare_options
+    @shelves = Shelf.order(:position)
+  end
+
   def inventory_file_params
-    params.require(:inventory_file).permit(:inventory, :note)
+    params.require(:inventory_file).permit(:inventory, :shelf_id, :note)
   end
 end
