@@ -26,12 +26,15 @@ class InventoryFile < ApplicationRecord
     file = File.open(self.inventory.path)
     reader = file.read
     reader.split.each do |row|
-      item = Item.where(item_identifier: row.to_s.strip).first
+      identifier = row.to_s.strip
+      item = Item.find_by(item_identifier: identifier)
       if item
         unless self.items.where(id: item.id).select('items.id').first
           Inventory.create(
             inventory_file: self,
-            item: item
+            item: item,
+            current_shelf_name: shelf.name,
+            item_identifier: identifier
           )
         end
       end
