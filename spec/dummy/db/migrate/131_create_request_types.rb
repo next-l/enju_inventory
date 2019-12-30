@@ -1,9 +1,9 @@
-class CreateRequestTypes < ActiveRecord::Migration[5.2]
+class CreateRequestTypes < ActiveRecord::Migration[4.2]
   def change
     create_table :request_types do |t|
       t.string :name, null: false
       t.text :display_name
-      t.text :note, comment: '備考'
+      t.text :note
       t.integer :position
 
       t.timestamps

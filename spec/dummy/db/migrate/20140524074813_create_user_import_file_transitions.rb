@@ -1,8 +1,8 @@
-class CreateUserImportFileTransitions < ActiveRecord::Migration[5.2]
+class CreateUserImportFileTransitions < ActiveRecord::Migration[4.2]
   def change
     create_table :user_import_file_transitions do |t|
       t.string :to_state
-      t.jsonb :metadata, default: {}
+      t.text :metadata, default: "{}"
       t.integer :sort_key
       t.references :user_import_file, index: true
       t.timestamps
