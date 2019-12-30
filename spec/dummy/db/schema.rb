@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_24_091957) do
+ActiveRecord::Schema.define(version: 2019_12_30_082846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -499,6 +499,8 @@ ActiveRecord::Schema.define(version: 2019_12_24_091957) do
     t.integer "inventory_file_size"
     t.datetime "inventory_updated_at"
     t.string "inventory_fingerprint"
+    t.bigint "shelf_id", null: false
+    t.index ["shelf_id"], name: "index_inventory_files_on_shelf_id"
     t.index ["user_id"], name: "index_inventory_files_on_user_id"
   end
 
@@ -1469,6 +1471,7 @@ ActiveRecord::Schema.define(version: 2019_12_24_091957) do
   add_foreign_key "identifiers", "manifestations"
   add_foreign_key "import_requests", "manifestations"
   add_foreign_key "import_requests", "users"
+  add_foreign_key "inventory_files", "shelves"
   add_foreign_key "isbn_record_and_manifestations", "isbn_records"
   add_foreign_key "isbn_record_and_manifestations", "manifestations"
   add_foreign_key "issn_record_and_manifestations", "issn_records"
