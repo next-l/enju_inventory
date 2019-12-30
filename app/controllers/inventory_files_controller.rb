@@ -16,6 +16,8 @@ class InventoryFilesController < ApplicationController
   # GET /inventory_files/1
   # GET /inventory_files/1.json
   def show
+    @inventories = @inventory_file.inventories.page(params[:page])
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @inventory_file }
