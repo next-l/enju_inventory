@@ -101,6 +101,7 @@ class InventoryFilesController < ApplicationController
   end
 
   def prepare_options
+    @libraries = Library.order(:position)
     @shelves = Shelf.order(:position)
   end
 
