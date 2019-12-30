@@ -12,7 +12,12 @@ class InventoryFile < ActiveRecord::Base
     inventory.download.split.each do |row|
       identifier = row.to_s.strip
       item = Item.find_by(item_identifier: identifier)
-      Inventory.create(item_identifier: identifier, item: item, inventory_file: self)
+      Inventory.create(
+        inventory_file: self,
+        item: item,
+        current_shelf_name: shelf.name,
+        item_identifier: identifier
+      )
     end
   end
 
