@@ -5,6 +5,7 @@ class InventoryFile < ActiveRecord::Base
   belongs_to :shelf
 
   has_one_attached :inventory
+  attr_accessor :library_id
 
   paginates_per 10
 
