@@ -9,6 +9,7 @@ ja:
         note: 注記
         item_identifier: 個別資料ID
         current_shelf_name: 現在の書棚
+        lineno: 行数
       inventory_file:
         inventory_file_name: ファイル名
         inventory_content_type: Content-Type
