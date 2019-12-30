@@ -4,7 +4,7 @@ describe InventoryFile do
   fixtures :users
 
   before(:each) do
-    @file = InventoryFile.create(user: users(:admin))
+    @file = InventoryFile.create(user: users(:admin), shelf: Shelf.find_by(name: 'first_shelf'))
     @file.inventory.attach(io: File.new("#{Rails.root.to_s}/../../examples/inventory_file_sample.tsv"), filename: 'attachment.txt')
   end
 
