@@ -9,6 +9,7 @@ en:
         note: Note
         item_identifier: Item identifier
         current_shelf_name: Current shelf
+        lineno: Line
       inventory_file:
         inventory_file_name: Filename
         inventory_content_type: Content type
