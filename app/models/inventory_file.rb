@@ -40,7 +40,7 @@ class InventoryFile < ApplicationRecord
   end
 
   def export(col_sep: "\t")
-    file = Tempfile.create do |f|
+    file = Tempfile.create('inventory_file') do |f|
       inventories.each do |inventory|
         f.write inventory.to_hash.values.to_csv(col_sep)
       end
