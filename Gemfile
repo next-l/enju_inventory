@@ -23,9 +23,3 @@ group :test do
 end
 
 gem 'enju_leaf', github: 'next-l/enju_leaf', branch: '2.x'
-gem 'enju_library', github: 'next-l/enju_library', branch: '2.x'
-gem 'enju_biblio', github: 'next-l/enju_biblio', branch: '2.x'
-gem 'enju_manifestation_viewer', github: 'next-l/enju_manifestation_viewer', branch: '2.x'
-gem 'enju_circulation', github: 'next-l/enju_circulation', branch: '2.x'
-gem 'enju_event', github: 'next-l/enju_event', branch: '2.x'
-gem 'enju_message', github: 'next-l/enju_message', branch: '2.x'
