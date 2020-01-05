@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "enju_biblio", "~> 0.4.0.rc.1"
 
+  s.add_development_dependency "enju_circulation", "~> 0.4.0.rc.1"
   s.add_development_dependency "enju_leaf", "~> 2.0.0.rc.1"
   s.add_development_dependency "pg"
   s.add_development_dependency "sunspot_solr", "~> 2.5"
