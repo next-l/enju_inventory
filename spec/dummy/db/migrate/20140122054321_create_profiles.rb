@@ -1,7 +1,6 @@
 class CreateProfiles < ActiveRecord::Migration[5.2]
   def change
     create_table :profiles, comment: 'プロフィール' do |t|
-      t.references :user, foreign_key: true
       t.string :locale, comment: 'ロケール'
       t.string :user_number, comment: '利用者番号'
       t.text :full_name, comment: '氏名'
