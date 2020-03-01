@@ -18,6 +18,7 @@ gem 'enju_circulation', github: 'next-l/enju_circulation'
 gem 'enju_message', github: 'next-l/enju_message'
 gem 'enju_event', github: 'next-l/enju_event'
 gem 'jbuilder'
+gem 'webpacker'
 gem 'rails', '~> 5.2'
 group :test do
   gem 'rails-controller-testing'
