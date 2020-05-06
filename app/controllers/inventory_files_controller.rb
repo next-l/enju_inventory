@@ -67,7 +67,7 @@ class InventoryFilesController < ApplicationController
   # PUT /inventory_files/1.json
   def update
     respond_to do |format|
-      if @inventory_file.update_attributes(inventory_file_params)
+      if @inventory_file.update(inventory_file_params)
         flash[:notice] = t('controller.successfully_updated', model: t('activerecord.models.inventory_file'))
         format.html { redirect_to(@inventory_file) }
         format.json { head :no_content }
