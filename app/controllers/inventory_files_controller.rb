@@ -52,7 +52,7 @@ class InventoryFilesController < ApplicationController
     respond_to do |format|
       if @inventory_file.save
         flash[:notice] = t('controller.successfully_created', model: t('activerecord.models.inventory_file'))
-        @inventory_file.import
+        # @inventory_file.import
         format.html { redirect_to(@inventory_file) }
         format.json { render json: @inventory_file, status: :created, location: @inventory_file }
       else
