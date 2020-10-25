@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_30_082846) do
+ActiveRecord::Schema.define(version: 2020_10_25_090703) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
+  enable_extension "plpgsql"
 
   create_table "accepts", force: :cascade do |t|
     t.integer "basket_id"
@@ -427,6 +431,7 @@ ActiveRecord::Schema.define(version: 2019_12_30_082846) do
     t.datetime "binded_at"
     t.integer "manifestation_id", null: false
     t.text "memo"
+    t.date "missing_since"
     t.index ["binding_item_identifier"], name: "index_items_on_binding_item_identifier"
     t.index ["bookstore_id"], name: "index_items_on_bookstore_id"
     t.index ["checkout_type_id"], name: "index_items_on_checkout_type_id"
