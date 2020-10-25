@@ -31,7 +31,10 @@ namespace :enju_inventory do
               if item.rent?
                 item.update!(missing_since: nil)
               else
-                item.update!(missing_since: nil, circulation_status: CirculationStatus.find_by(name: row['circulation_status']))
+                item.update!(
+                  missing_since: nil,
+                  circulation_status: CirculationStatus.find_by(name: row['circulation_status'])
+                )
               end
               puts "found: #{row['item_identifier']}"
             end
@@ -39,7 +42,7 @@ namespace :enju_inventory do
         when 'Missing'
           if row['missing_since'].blank?
             item = Item.find_by(item_identifier: row['item_identifier'])
-            item.update!(missing_since: '2020-01-31')
+            item.update!(missing_since: Date.today)
           end
         end
 
