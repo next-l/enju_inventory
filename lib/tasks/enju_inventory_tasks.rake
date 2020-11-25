@@ -59,6 +59,5 @@ namespace :enju_inventory do
         end
       end
     end
->>>>>>> aa9f7a5... add missing_since to Item
   end
 end
