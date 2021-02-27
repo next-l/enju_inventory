@@ -16,6 +16,6 @@ gem 'rails-i18n'
 # To use debugger
 # gem 'debugger'
 group :test do
-  gem 'rspec_junit_formatter'
+  gem 'rspec_junit_formatter', require: false
   gem 'rails-controller-testing'
 end
