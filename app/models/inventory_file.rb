@@ -13,7 +13,7 @@ class InventoryFile < ActiveRecord::Base
     CSV.parse(inventory.download, headers: true, col_sep: "\t") do |row|
       # 電子書籍を除外
       next if row['shelf'] == 'web'
-      item_identifier row['item_identifier'].to_s.strip
+      item_identifier = row['item_identifier'].to_s.strip
       next if item_identifier.blank?
 
       Item.transaction do
@@ -26,6 +26,18 @@ class InventoryFile < ActiveRecord::Base
         )
 
         next unless item
+
+        # 配架場所の変更を反映
+        unless row['current_shelf'] == row['shelf']
+          unless row['current_shelf'] == '-' or row['current_shelf'].blank?
+            shelf = Shelf.find_by(name: row['current_shelf'])
+            if item && shelf
+              item.update!(shelf: Shelf.find_by(name: row['current_shelf']))
+              Rails.logger.info "Inventory: #{item.item_identifier}: shelf updated to #{shelf.name}"
+            end
+          end
+        end
+        next
 
         case row['circulation_status']
         when 'On Loan'
@@ -57,6 +69,11 @@ class InventoryFile < ActiveRecord::Base
               Rails.logger.info "Inventory: #{row['item_identifier']}: changed status to found"
             end
           end
+
+          if item.circulation_status.name == 'In Process'
+            item.update!(circulation_status: CirculationStatus.find_by(name: 'Available On Shelf'))
+            Rails.logger.info "Inventory: #{row['item_identifier']}: changed status to available"
+          end
         when 'Missing'
           item.circulation_status = CirculationStatus.find_by(name: 'Missing') unless item.circulation_status == 'Missing'
           if row['missing_since'].blank?
@@ -65,17 +82,6 @@ class InventoryFile < ActiveRecord::Base
           else
             item.update!(missing_since: Date.parse(row['missing_since']))
             Rails.logger.info "Inventory: #{row['item_identifier']}: changed status to missing"
-          end
-        end
-
-        # 配架場所の変更を反映
-        unless row['current_shelf'] == row['shelf']
-          unless row['current_shelf'] == '-' or row['current_shelf'].blank?
-            shelf = Shelf.find_by(name: row['current_shelf'])
-            if item && shelf
-              item.update!(shelf: Shelf.find_by(name: row['current_shelf']))
-              Rails.logger.info "Inventory: #{item.item_identifier}: shelf updated to #{shelf.name}"
-            end
           end
         end
       end
