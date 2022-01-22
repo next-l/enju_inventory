@@ -15,7 +15,7 @@ jobs:
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
-       - image: circleci/postgres:11-alpine
+       - image: circleci/postgres:12-alpine
          environment:
            POSTGRES_USER: postgres
            POSTGRES_DB: enju_inventory_dummy_test
@@ -46,7 +46,7 @@ jobs:
       - run:
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run:
-          command: sudo apt install -y openjdk-8-jre-headless
+          command: sudo apt update && sudo apt install -y openjdk-8-jre-headless
       - run:
           command: sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
       - run: bundle exec rake db:test:prepare
